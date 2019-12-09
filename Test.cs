@@ -30,8 +30,6 @@ namespace Paint
             surface.MouseLeave += Surface_MouseLeave;
             surface.SizeChanged += Surface_SizeChange;
 
-            //drawPanel1.Text = surface.Size.ToString();
-            // always start as pencil
             //đổi ảnh button
             penUC1.PencilClicked += PenUC1_PencilClicked;
             penUC1.BrushClicked += PenUC1_BrushClicked;
@@ -48,7 +46,7 @@ namespace Paint
             //Open file
             fileUC1.OpenClicked += FileUC1_OpenClicked;
             //always start with pencil
-            CurrentBrush = BrushType.Brush;
+            CurrentBrush = BrushType.Pencil;
         }
 
         private void FileUC1_OpenClicked(object sender, EventArgs e)
@@ -181,6 +179,16 @@ namespace Paint
         {
             if (this.PanelPaint != null)
                 this.PanelPaint(sender, e);
+        }
+
+        private void UndoB_Click(object sender, EventArgs e)
+        {
+            surface.UndoPress();
+        }
+
+        private void RedoB_Click(object sender, EventArgs e)
+        {
+            surface.RedoPress();
         }
     }
 }

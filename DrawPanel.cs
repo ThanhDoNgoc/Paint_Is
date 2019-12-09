@@ -28,20 +28,22 @@ namespace Paint
         public DrawPanel()
         {
             Controls.Add(drawsurface = new Surface());
+
         }
 
         #region Init square
         void InitDragRectangles()
         {
-            Point p1 = new Point(drawsurface.Width, drawsurface.Height);
-            Point p2 = new Point(drawsurface.Width / 2, drawsurface.Height);
-            Point p3 = new Point(drawsurface.Width, drawsurface.Height / 2);
-            Point[] dragPoints = { p1, p2, p3 };
+            Point p1 = new Point(drawsurface.Right, drawsurface.Bottom);
+            Point p2 = new Point(drawsurface.Left - 6, drawsurface.Top - 6);
+            Point p3 = new Point(drawsurface.Left - 6, drawsurface.Bottom);
+            Point p4 = new Point(drawsurface.Right, drawsurface.Top - 6);
+            Point[] dragPoints = { p1, p2, p3, p4 };
 
-            dragRects = new Rectangle[3];
+            dragRects = new Rectangle[4];
 
-            
-            for (int i = 0; i < 3; i++)
+
+            for (int i = 0; i < 4; i++)
             {
                 dragRects[i] = new Rectangle(dragPoints[i], new Size(5, 5));
             }
@@ -62,7 +64,7 @@ namespace Paint
         {
             base.OnMouseDown(e);
 
-            if (dragHandleIndex != 4)
+            if (dragHandleIndex != 5)
             {
                 panelStatus = PanelStatus.Resize;
             }
@@ -76,23 +78,23 @@ namespace Paint
                 if (panelStatus == PanelStatus.Idle)
                 {
                     // return the rectangle containt the currosr
-                    dragHandleIndex = dragRects.TakeWhile(rect => !rect.Contains(e.Location)).Count() + 1; 
+                    dragHandleIndex = dragRects.TakeWhile(rect => !rect.Contains(e.Location)).Count() + 1;
 
                     switch (dragHandleIndex)
                     {
                         case 1:
                             Cursor = Cursors.SizeNWSE;
                             break;
-
                         case 2:
-                            Cursor = Cursors.SizeNS;
+                            Cursor = Cursors.SizeNWSE;
                             break;
-
                         case 3:
-                            Cursor = Cursors.SizeWE;
+                            Cursor = Cursors.SizeNESW;
                             break;
-
                         case 4:
+                            Cursor = Cursors.SizeNESW;
+                            break;
+                        case 5:
                             Cursor = Cursors.Default;
                             break;
                     }
@@ -124,15 +126,20 @@ namespace Paint
                     switch (dragHandleIndex)
                     {
                         case 1:
-                            drawsurface.Size = new Size(e.Location.X, e.Location.Y);
+                            drawsurface.Size = new Size(e.X - drawsurface.Left, e.Y - drawsurface.Top);
                             break;
-
                         case 2:
-                            drawsurface.Size = new Size(drawsurface.Width, e.Location.Y);
-                            break;
 
+                            drawsurface.Size = new Size(-(e.X - drawsurface.Left) + drawsurface.Width, -(e.Y - drawsurface.Top) + drawsurface.Height);
+                            drawsurface.Location = e.Location;
+                            break;
                         case 3:
-                            drawsurface.Size = new Size(e.Location.X, drawsurface.Height);
+                            drawsurface.Size = new Size(drawsurface.Left + drawsurface.Width - e.X, e.Y - drawsurface.Top);
+                            drawsurface.Location = new Point(e.X, drawsurface.Top);
+                            break;
+                        case 4:
+                            drawsurface.Size = new Size(e.X - drawsurface.Left, drawsurface.Top + drawsurface.Height - e.Y);
+                            drawsurface.Location = new Point(drawsurface.Left, e.Y);
                             break;
                     }
                     // store the current image and resize the bitmap contain image
@@ -142,18 +149,7 @@ namespace Paint
                     Graphics g = Graphics.FromImage(drawsurface.Image);
                     g.DrawImage(OldImage, new Rectangle(0, 0, OldImage.Width, OldImage.Height));
 
-                    if (drawsurface.Image.Width > OldImage.Width || drawsurface.Image.Height > OldImage.Height)
-                    {
-                        Rectangle OldSize = new Rectangle(0, 0, OldImage.Width, OldImage.Height);
-                        Rectangle NewSize = new Rectangle(0, 0, drawsurface.Width, drawsurface.Height);
-                        Region OldRegion = new Region(OldSize);
-                        Region NewRegion = new Region(NewSize);
-
-                        //draw the new area with the backcolor of the surface
-                        NewRegion.Exclude(OldRegion);
-                        SolidBrush brush = new SolidBrush(Surface.BackColor);
-                        g.FillRegion(brush, NewRegion);
-                    }
+                    drawsurface.PushRedo(drawsurface.Image);
                 }
             }
             catch { }

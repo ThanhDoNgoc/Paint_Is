@@ -30,9 +30,9 @@ namespace Paint
 
         Point MouseDown;
         #endregion
-        List<Point> points = null;
+        //List<Point> points = null;
 
-        
+
         #region Init Surface
         public Surface()
         {
@@ -40,23 +40,24 @@ namespace Paint
             Undo = new Stack<Bitmap>();
             Redo = new Stack<Bitmap>();
 
-            Size = new Size(1250, 500);
+            Location = new Point(100, 100);
+            Size = new Size(100, 100);
             Image = new Bitmap(Width, Height);
+            BackColor = Color.Yellow;
 
             Region region = new Region(new Rectangle(0, 0, Width, Height));
             grp = Graphics.FromImage(Image);
-            grp.FillRegion(new SolidBrush(Color.Transparent), region);
-            
+
         }
 
         #endregion
-       
+
         #region Paint and Mouse Control
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
-            
-           
+
+
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
@@ -67,10 +68,11 @@ namespace Paint
             switch (CurrentStatus)
             {
                 case DrawStatus.Idle:
-                    
+
                     if (e.Button == MouseButtons.Left)
                         color = Test.color;
                     SetGraphics();
+                    Cursor = Cursors.Cross;
                     break;
                 #region undone 
                 case DrawStatus.Edit:
@@ -79,7 +81,7 @@ namespace Paint
                         OldRect = AreaRect;
                         CurrentStatus = DrawStatus.Resizing;
                     }
-                    else if (AreaRect.Contains(e.Location)) 
+                    else if (AreaRect.Contains(e.Location))
                     {
                         OldRect = AreaRect;
                         CurrentStatus = DrawStatus.Moving;
@@ -99,13 +101,13 @@ namespace Paint
             }
         }
 
- 
+
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
 
-            switch(CurrentStatus)
+            switch (CurrentStatus)
             {
                 case DrawStatus.ToolDraw:
                     DrawDrag(MouseDown, e.Location, Test.CurrentBrush);
@@ -122,18 +124,19 @@ namespace Paint
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
-            switch(CurrentStatus)
+            switch (CurrentStatus)
             {
                 case DrawStatus.ToolDraw:
                     CurrentStatus = DrawStatus.Idle;
                     Redo.Push(new Bitmap(Image));
+                    Cursor = Cursors.Default;
                     break;
             }
         }
 
         private void SetGraphics()
         {
-            switch(Test.CurrentBrush)
+            switch (Test.CurrentBrush)
             {
                 case BrushType.Pencil:
                     Undo.Push(new Bitmap(Image));
@@ -159,9 +162,9 @@ namespace Paint
                 case BrushType.Brush:
                     Undo.Push(new Bitmap(Image));
                     Redo.Clear();
-                    pen = new Pen(Color.FromArgb(50, color), 10);
+                    pen = new Pen(Color.FromArgb(10, color), 10);
                     pen.StartCap = pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-                    grp.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+                    //grp.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
                     CurrentStatus = DrawStatus.ToolDraw;
                     break;
                 case BrushType.Picker:
@@ -209,27 +212,27 @@ namespace Paint
             Image = DrawBitmap;
         }
         //chuột kéo 
-        private void DrawDrag(Point mouseDown,Point location ,BrushType currentBrush)
+        private void DrawDrag(Point mouseDown, Point location, BrushType currentBrush)
         {
             switch (currentBrush)
             {
-                
+
                 case BrushType.Pencil:
-                    grp = CreateGraphics();
+                    //grp = CreateGraphics();
                     grp = Graphics.FromImage(Image);
                     grp.DrawLine(pen, mouseDown, location);
-                   // grp.SmoothingMode = 
+                    // grp.SmoothingMode = 
                     break;
                 case BrushType.Eraser:
-                    grp = CreateGraphics();
+                    //grp = CreateGraphics();
                     grp = Graphics.FromImage(Image);
                     grp.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
-                    grp.DrawLine(pen,mouseDown,location);
+                    grp.DrawLine(pen, mouseDown, location);
                     break;
                 case BrushType.Brush:
                     //GraphicsPath path = new GraphicsPath();     
                     grp = Graphics.FromImage(Image);
-                    grp.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+                    //grp.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
 
                     //for (int i=0;i<points.Count;i++)
                     //pen.LineJoin = LineJoin.Round;
@@ -240,6 +243,38 @@ namespace Paint
                     //ongoing
             }
         }
+
+        #region Undo & Redo
+        public void UndoPress()
+        {
+            if (Undo.Count > 0)
+            {
+                Redo.Push(Undo.Peek());
+                Image = Undo.Peek();
+                Size = Undo.Pop().Size;
+            }
+        }
+
+        public void RedoPress()
+        {
+            if (Redo.Count > 1)
+            {
+                Undo.Push(Redo.Pop());
+                Image = Redo.Peek();
+                Size = Image.Size;
+            }
+        }
+
+        public void PushUndo(Image img)
+        {
+            Undo.Push(new Bitmap(img));
+        }
+
+        public void PushRedo(Image img)
+        {
+            Redo.Push(new Bitmap(img));
+        }
+        #endregion
     }
     public enum BrushType
     {
