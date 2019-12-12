@@ -144,6 +144,7 @@
     <Content Include="Buttons\030-paint-bucket.png" />
     <Content Include="Buttons\035-paint-brush-1.png" />
     <Content Include="Buttons\050-pencil.png" />
+    <Content Include="Buttons\circle.png" />
     <Content Include="Buttons\curved-line.png" />
     <Content Include="Buttons\horizontal-line.png" />
     <Content Include="Buttons\icons8-arrow-100 - Copy.png" />
