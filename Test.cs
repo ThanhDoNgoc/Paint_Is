@@ -15,6 +15,7 @@ namespace Paint
         Surface surface;
         public static Shape CurrentShape { get; set; }
         public static BrushType CurrentBrush { get; set; }
+        public static BrushType PenBrush { get; set; }
         public static Color color{ get; set; }
         public event EventHandler PanelPaint;
         int PenSize;
@@ -99,6 +100,7 @@ namespace Paint
             PenB.Text = "";
             PenB.BackgroundImage = PenUC.Instance.getBucket();
             Test.CurrentBrush = BrushType.Bucket;
+            PenBrush = CurrentBrush;
         }
 
         private void PenUC1_BrushClicked(object sender, EventArgs e)
@@ -106,6 +108,7 @@ namespace Paint
             PenB.Text = "";
             PenB.BackgroundImage = PenUC.Instance.getBrush();
             Test.CurrentBrush = BrushType.Brush;
+            PenBrush = CurrentBrush;
         }
 
         private void PenUC1_PencilClicked(object sender, EventArgs e)
@@ -113,6 +116,7 @@ namespace Paint
             PenB.Text = "";
             PenB.BackgroundImage = PenUC.Instance.getPencil();
             Test.CurrentBrush = BrushType.Pencil;
+            PenBrush = CurrentBrush;
         }
 
         private void Surface_SizeChange(object sender, EventArgs e)
@@ -142,7 +146,7 @@ namespace Paint
         }
         void HideAllPanels()
         {
-
+            shapesUC1.Visible = false;
             penUC1.Visible = false;
             fileUC1.Visible = false;
         }
@@ -165,6 +169,10 @@ namespace Paint
             {
                 HideAllPanels();
                 Transition1.ShowSync(penUC1, false, BunifuAnimatorNS.Animation.HorizSlide);
+            }
+            else if (penUC1.Visible && CurrentBrush == BrushType.Eraser)
+            {
+                CurrentBrush = PenBrush;
             }
             else
                 Transition1.HideSync(penUC1, false, BunifuAnimatorNS.Animation.HorizSlide);
@@ -189,6 +197,17 @@ namespace Paint
         private void RedoB_Click(object sender, EventArgs e)
         {
             surface.RedoPress();
+        }
+
+        private void ShapesB_Click(object sender, EventArgs e)
+        {
+            if (!shapesUC1.Visible)
+            {
+                HideAllPanels();
+                Transition1.ShowSync(shapesUC1, false, BunifuAnimatorNS.Animation.HorizSlide);
+            }
+            else
+                Transition1.HideSync(shapesUC1, false, BunifuAnimatorNS.Animation.HorizSlide);
         }
     }
 }
