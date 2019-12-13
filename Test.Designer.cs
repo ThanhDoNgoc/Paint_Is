@@ -202,6 +202,7 @@
             this.Controls.Add(this.drawPanel1);
             this.Transition1.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
             this.Name = "Test";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Test_FormClosing);
             this.ResumeLayout(false);
 
         }

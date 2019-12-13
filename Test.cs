@@ -25,6 +25,7 @@ namespace Paint
             InitializeComponent();
             penUC1.Visible = false;
             fileUC1.Visible = false;
+            shapesUC1.Visible = false;
             surface = drawPanel1.Surface;
             surface.MouseDown += Surface_MouseDown;
             surface.MouseMove += Surface_MouseMove;
@@ -208,6 +209,19 @@ namespace Paint
             }
             else
                 Transition1.HideSync(shapesUC1, false, BunifuAnimatorNS.Animation.HorizSlide);
+        }
+
+        private void Test_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MetroFramework.MetroMessageBox.Show(this, "File chưa được lưu, bạn có muốn đóng ứng dụng ?", "Save", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+            if (dr == DialogResult.No)
+            {
+                MetroFramework.MetroMessageBox.Show(this, "xxxx", "zzzz", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (dr == DialogResult.Cancel)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }
