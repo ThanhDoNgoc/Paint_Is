@@ -53,32 +53,32 @@ namespace Paint
         }
         public Color getRed()
         {
-            return Color.FromArgb(50, ptbRed.BackColor);
+            return Color.Red;
         }
         public Color getYellow()
         {
-            return Color.FromArgb(50, ptbYellow.BackColor);
+            return Color.Yellow;
         }
         public Color getOrange()
         {
-            return Color.FromArgb(50, ptbOrange.BackColor);
+            return Color.Orange;
         }
         public Color getGreen()
         {
-            return Color.FromArgb(50, ptbGreen.BackColor);
+            return Color.Green;
         }
         public Color getBlue()
         {
-            return Color.FromArgb(50, ptbBlue.BackColor);
+            return Color.Blue;
         }
         public Color getPurple()
         {
-            return Color.FromArgb(50, ptbPurple.BackColor);
+            return Color.Purple;
         }
         public Color getBlack()
         {
 
-            return Color.FromArgb(50, ptbBlack.BackColor);
+            return Color.Black;
         }
         public PenUC()
         {

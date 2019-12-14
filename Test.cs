@@ -47,55 +47,66 @@ namespace Paint
             penUC1.PurpleClicked += PenUC1_PurpleClicked;
             //Open file
             fileUC1.OpenClicked += FileUC1_OpenClicked;
-            //always start with pencil
+            //always start with...
             CurrentBrush = BrushType.Pencil;
+            PenBrush = CurrentBrush;
+            PenSize = 10;
+            color = Color.Black;
+            PenB.BackColor = Color.FromArgb(50, Color.Black);
         }
 
         private void FileUC1_OpenClicked(object sender, EventArgs e)
         {
-           // throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
         private void PenUC1_PurpleClicked(object sender, EventArgs e)
         {
-            PenB.BackColor = PenUC.Instance.getPurple();
+            PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getPurple());
+            color = PenUC.Instance.getPurple();
         }
 
         private void PenUC1_GreenClicked(object sender, EventArgs e)
         {
-            PenB.BackColor = PenUC.Instance.getGreen();
+            PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getGreen());
+            color = PenUC.Instance.getGreen();
         }
 
         private void PenUC1_BlueClicked(object sender, EventArgs e)
         {
-            PenB.BackColor = PenUC.Instance.getBlue();
+            PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getBlue());
+            color = PenUC.Instance.getBlue();
         }
 
         private void PenUC1_BlackClicked(object sender, EventArgs e)
         {
-            PenB.BackColor = PenUC.Instance.getBlack();
+            PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getBlack());
+            color = PenUC.Instance.getBlack();
         }
 
         private void PenUC1_OrangeClicked(object sender, EventArgs e)
         {
-            PenB.BackColor = PenUC.Instance.getOrange();
+            PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getOrange());
+            color = PenUC.Instance.getOrange();
         }
 
         private void PenUC1_YellowClicked(object sender, EventArgs e)
         {
-            PenB.BackColor = PenUC.Instance.getYellow();
+            PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getYellow());
+            color = PenUC.Instance.getYellow();
         }
 
         private void PenUC1_RedClicked(object sender, EventArgs e)
         {
-            PenB.BackColor = PenUC.Instance.getRed();
+            PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getRed());
+            color = PenUC.Instance.getRed();
         }
 
         private void PenUC1_WhiteClicked(object sender, EventArgs e)
         {
-            PenB.BackColor = PenUC.Instance.getWhite();
+            PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getWhite());
+            color = PenUC.Instance.getWhite();
         }
-
         private void PenUC1_BucketClicked(object sender, EventArgs e)
         {
             PenB.Text = "";
@@ -132,8 +143,7 @@ namespace Paint
 
         private void Surface_MouseDown(object sender, MouseEventArgs e)
         {
-            color = Color.Black;
-            PenSize = 1000;
+            
         }
 
         private void Surface_MouseMove(object sender, MouseEventArgs e)
