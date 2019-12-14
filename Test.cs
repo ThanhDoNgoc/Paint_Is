@@ -18,7 +18,8 @@ namespace Paint
         public static BrushType PenBrush { get; set; }
         public static Color color{ get; set; }
         public event EventHandler PanelPaint;
-        int PenSize;
+        public static int PenSize;
+        public static int EraserSize;
 
         public Test()
         {
@@ -26,6 +27,7 @@ namespace Paint
             penUC1.Visible = false;
             fileUC1.Visible = false;
             shapesUC1.Visible = false;
+            ESize.Visible = false;
             surface = drawPanel1.Surface;
             surface.MouseDown += Surface_MouseDown;
             surface.MouseMove += Surface_MouseMove;
@@ -53,6 +55,7 @@ namespace Paint
             PenSize = 10;
             color = Color.Black;
             PenB.BackColor = Color.FromArgb(50, Color.Black);
+            EraserSize = 10;
         }
 
         private void FileUC1_OpenClicked(object sender, EventArgs e)
@@ -154,12 +157,22 @@ namespace Paint
         private void EraserB_Click(object sender, EventArgs e)
         {
             Test.CurrentBrush = BrushType.Eraser;
+            if (!ESize.Visible)
+            {
+                HideAllPanels();
+                Transition1.ShowSync(ESize, false, BunifuAnimatorNS.Animation.HorizSlide);
+            }
+            else
+            {
+                Transition1.HideSync(ESize, false, BunifuAnimatorNS.Animation.HorizSlide);
+            }
         }
         void HideAllPanels()
         {
             shapesUC1.Visible = false;
             penUC1.Visible = false;
             fileUC1.Visible = false;
+            ESize.Visible = false;
         }
         private void FileB_Click(object sender, EventArgs e)
         {
@@ -180,6 +193,7 @@ namespace Paint
             {
                 HideAllPanels();
                 Transition1.ShowSync(penUC1, false, BunifuAnimatorNS.Animation.HorizSlide);
+                CurrentBrush = PenBrush;
             }
             else if (penUC1.Visible && CurrentBrush == BrushType.Eraser)
             {
@@ -192,6 +206,15 @@ namespace Paint
         private void EraserB_Click_1(object sender, EventArgs e)
         {
             Test.CurrentBrush = BrushType.Eraser;
+            if (!ESize.Visible)
+            {
+                HideAllPanels();
+                Transition1.ShowSync(ESize, false, BunifuAnimatorNS.Animation.HorizSlide);
+            }
+            else
+            {
+                Transition1.HideSync(ESize, false, BunifuAnimatorNS.Animation.HorizSlide);
+            }
         }
 
         private void drawPanel1_Paint(object sender, PaintEventArgs e)
@@ -232,6 +255,11 @@ namespace Paint
             {
                 e.Cancel = true;
             }
+        }
+
+        private void ESize_Scroll(object sender, ScrollEventArgs e)
+        {
+            EraserSize = ESize.Value;
         }
     }
 }

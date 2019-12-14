@@ -172,6 +172,11 @@ namespace Paint
                 this.PurpleClicked(sender, e);
             }
         }
+
+        private void metroTrackBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            Test.PenSize = metroTrackBar1.Value;
+        }
     }
 }
 

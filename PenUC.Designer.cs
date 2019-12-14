@@ -92,6 +92,8 @@
             this.metroTrackBar1.Size = new System.Drawing.Size(220, 23);
             this.metroTrackBar1.TabIndex = 3;
             this.metroTrackBar1.Text = "metroTrackBar1";
+            this.metroTrackBar1.Value = 10;
+            this.metroTrackBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.metroTrackBar1_Scroll);
             // 
             // SizeLb
             // 

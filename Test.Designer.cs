@@ -39,6 +39,7 @@
             this.SaveB = new MetroFramework.Controls.MetroButton();
             this.EraserB = new MetroFramework.Controls.MetroButton();
             this.Transition1 = new BunifuAnimatorNS.BunifuTransition(this.components);
+            this.ESize = new MetroFramework.Controls.MetroTrackBar();
             this.shapesUC1 = new Paint.ShapesUC();
             this.fileUC1 = new Paint.FileUC();
             this.penUC1 = new Paint.PenUC();
@@ -151,6 +152,17 @@
             animation1.TransparencyCoeff = 0F;
             this.Transition1.DefaultAnimation = animation1;
             // 
+            // ESize
+            // 
+            this.ESize.BackColor = System.Drawing.Color.Transparent;
+            this.Transition1.SetDecoration(this.ESize, BunifuAnimatorNS.DecorationType.None);
+            this.ESize.Location = new System.Drawing.Point(0, 146);
+            this.ESize.Name = "ESize";
+            this.ESize.Size = new System.Drawing.Size(220, 23);
+            this.ESize.TabIndex = 12;
+            this.ESize.Value = 10;
+            this.ESize.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ESize_Scroll);
+            // 
             // shapesUC1
             // 
             this.Transition1.SetDecoration(this.shapesUC1, BunifuAnimatorNS.DecorationType.None);
@@ -189,6 +201,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1290, 589);
+            this.Controls.Add(this.ESize);
             this.Controls.Add(this.shapesUC1);
             this.Controls.Add(this.fileUC1);
             this.Controls.Add(this.penUC1);
@@ -221,5 +234,6 @@
         private FileUC fileUC1;
         private PenUC penUC1;
         private ShapesUC shapesUC1;
+        private MetroFramework.Controls.MetroTrackBar ESize;
     }
 }
