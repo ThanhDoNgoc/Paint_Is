@@ -17,7 +17,7 @@ namespace Paint
         public static BrushType CurrentBrush { get; set; }
         public static Color color{ get; set; }
         public event EventHandler PanelPaint;
-        int PenSize;
+        public static int PenSize { get; set; }
 
         public Test()
         {
@@ -34,6 +34,7 @@ namespace Paint
             penUC1.PencilClicked += PenUC1_PencilClicked;
             penUC1.BrushClicked += PenUC1_BrushClicked;
             penUC1.BucketClicked += PenUC1_BucketClicked;
+
             //đổi màu button
             penUC1.WhiteClicked += PenUC1_WhiteClicked;
             penUC1.RedClicked += PenUC1_RedClicked;
@@ -47,6 +48,7 @@ namespace Paint
             fileUC1.OpenClicked += FileUC1_OpenClicked;
             //always start with pencil
             CurrentBrush = BrushType.Pencil;
+
         }
 
         private void FileUC1_OpenClicked(object sender, EventArgs e)
@@ -56,42 +58,50 @@ namespace Paint
 
         private void PenUC1_PurpleClicked(object sender, EventArgs e)
         {
-            PenB.BackColor = PenUC.Instance.getPurple();
+            PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getPurple());
+            color = PenUC.Instance.getPurple();
         }
 
         private void PenUC1_GreenClicked(object sender, EventArgs e)
         {
-            PenB.BackColor = PenUC.Instance.getGreen();
+            PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getGreen());
+            color = PenUC.Instance.getGreen();
         }
 
         private void PenUC1_BlueClicked(object sender, EventArgs e)
         {
-            PenB.BackColor = PenUC.Instance.getBlue();
+            PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getBlue());
+            color = PenUC.Instance.getBlue();
         }
 
         private void PenUC1_BlackClicked(object sender, EventArgs e)
         {
-            PenB.BackColor = PenUC.Instance.getBlack();
+            PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getBlack());
+            color = PenUC.Instance.getBlack();
         }
 
         private void PenUC1_OrangeClicked(object sender, EventArgs e)
         {
-            PenB.BackColor = PenUC.Instance.getOrange();
+            PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getOrange());
+            color = PenUC.Instance.getOrange();
         }
 
         private void PenUC1_YellowClicked(object sender, EventArgs e)
         {
-            PenB.BackColor = PenUC.Instance.getYellow();
+            PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getYellow());
+            color = PenUC.Instance.getYellow();
         }
 
         private void PenUC1_RedClicked(object sender, EventArgs e)
         {
-            PenB.BackColor = PenUC.Instance.getRed();
+            PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getRed());
+            color = PenUC.Instance.getRed();
         }
 
         private void PenUC1_WhiteClicked(object sender, EventArgs e)
         {
-            PenB.BackColor = PenUC.Instance.getWhite();
+            PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getWhite());
+            color = PenUC.Instance.getWhite();
         }
 
         private void PenUC1_BucketClicked(object sender, EventArgs e)
@@ -127,8 +137,7 @@ namespace Paint
 
         private void Surface_MouseDown(object sender, MouseEventArgs e)
         {
-            color = Color.Black;
-            PenSize = 1000;
+
         }
 
         private void Surface_MouseMove(object sender, MouseEventArgs e)

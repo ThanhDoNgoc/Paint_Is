@@ -22,6 +22,7 @@ namespace Paint
         Graphics grp;
         Pen pen;
         Color color;
+        int Pensize;
 
         DrawStatus CurrentStatus;
 
@@ -29,6 +30,7 @@ namespace Paint
         Stack<Bitmap> Redo;
 
         Point MouseDown;
+        Shape shape;
         #endregion
         //List<Point> points = null;
 
@@ -70,7 +72,10 @@ namespace Paint
                 case DrawStatus.Idle:
 
                     if (e.Button == MouseButtons.Left)
+                    {
                         color = Test.color;
+                        Pensize = Test.PenSize;
+                    }
                     SetGraphics();
                     Cursor = Cursors.Cross;
                     break;
@@ -94,7 +99,9 @@ namespace Paint
                         DrawShape.Draw(grp, pen, AreaRect, Test.CurrentShape);
                         Redo.Push(new Bitmap(Image));
 
+                        DrawShape.Draw(grp, pen, AreaRect, shape);
                         AreaRect = Rectangle.Empty;
+                        this.Refresh();
                     }
                     break;
                     #endregion
@@ -113,8 +120,29 @@ namespace Paint
                     DrawDrag(MouseDown, e.Location, Test.CurrentBrush);
                     MouseDown = e.Location;
                     break;
-                    //ongoing
+                //ongoing
+                case DrawStatus.ShapeDraw:
+                    AreaRect = DrawShape.CreateRectangle(MouseDown, e.Location);
+                    break;
+                case DrawStatus.Edit:
+                    Draghandle = Edit.GetDragHandle(e.Location, AreaRect);
+                    if (Draghandle < 9)
+                    {
+                        UpdateCursors();
+                    }
+                    else if (AreaRect.Contains(e.Location))
+                    {
+                        Cursor = Cursors.SizeAll;
+                    }
+                    else Cursor = Cursors.Default;
+                    break;
+                case DrawStatus.Resizing:
+                    Edit.UpdateResizeRect(ref AreaRect, OldRect, MouseDown, e.Location, Draghandle);
+                    break;
 
+                case DrawStatus.Moving:
+                    Edit.UpdateMoveRect(ref AreaRect, OldRect, MouseDown, e.Location);
+                    break;
             }
             this.Refresh();
         }
@@ -131,6 +159,7 @@ namespace Paint
                     Redo.Push(new Bitmap(Image));
                     Cursor = Cursors.Default;
                     break;
+                    //ongoing
             }
         }
 
@@ -241,6 +270,32 @@ namespace Paint
 
                     break;
                     //ongoing
+            }
+        }
+
+        private void UpdateCursors()
+        {
+           switch (Draghandle)
+            {
+                case 1:
+                case 8:
+                    Cursor = Cursors.SizeNWSE;
+                    break;
+
+                case 2:
+                case 7:
+                    Cursor = Cursors.SizeWE;
+                    break;
+
+                case 3:
+                case 6:
+                    Cursor = Cursors.SizeNESW;
+                    break;
+
+                case 4:
+                case 5:
+                    Cursor = Cursors.SizeNS;
+                    break;
             }
         }
 

@@ -75,31 +75,53 @@ namespace Paint
             base.OnMouseMove(e);
             try
             {
-                if (panelStatus == PanelStatus.Idle)
+                switch (panelStatus)
                 {
-                    // return the rectangle containt the currosr
-                    dragHandleIndex = dragRects.TakeWhile(rect => !rect.Contains(e.Location)).Count() + 1;
+                    case PanelStatus.Idle:
+                        // return the rectangle containt the currosr
+                        dragHandleIndex = dragRects.TakeWhile(rect => !rect.Contains(e.Location)).Count() + 1;
 
-                    switch (dragHandleIndex)
-                    {
-                        case 1:
-                            Cursor = Cursors.SizeNWSE;
-                            break;
-                        case 2:
-                            Cursor = Cursors.SizeNWSE;
-                            break;
-                        case 3:
-                            Cursor = Cursors.SizeNESW;
-                            break;
-                        case 4:
-                            Cursor = Cursors.SizeNESW;
-                            break;
-                        case 5:
-                            Cursor = Cursors.Default;
-                            break;
-                    }
+                        switch (dragHandleIndex)
+                        {
+                            case 1:
+                                Cursor = Cursors.SizeNWSE;
+                                break;
+                            case 2:
+                                Cursor = Cursors.SizeNWSE;
+                                break;
+                            case 3:
+                                Cursor = Cursors.SizeNESW;
+                                break;
+                            case 4:
+                                Cursor = Cursors.SizeNESW;
+                                break;
+                            case 5:
+                                Cursor = Cursors.Default;
+                                break;
+                        }
+                        break;
+                    case PanelStatus.Resize:
+                        switch (dragHandleIndex)
+                        {
+                            case 1:
+                                drawsurface.Size = new Size(e.X - drawsurface.Left, e.Y - drawsurface.Top);
+                                break;
+                            case 2:
+
+                                drawsurface.Size = new Size(-(e.X - drawsurface.Left) + drawsurface.Width, -(e.Y - drawsurface.Top) + drawsurface.Height);
+                                drawsurface.Location = e.Location;
+                                break;
+                            case 3:
+                                drawsurface.Size = new Size(drawsurface.Left + drawsurface.Width - e.X, e.Y - drawsurface.Top);
+                                drawsurface.Location = new Point(e.X, drawsurface.Top);
+                                break;
+                            case 4:
+                                drawsurface.Size = new Size(e.X - drawsurface.Left, drawsurface.Top + drawsurface.Height - e.Y);
+                                drawsurface.Location = new Point(drawsurface.Left, e.Y);
+                                break;
+                        }
+                        break;
                 }
-
             }
             catch { }
         }
@@ -117,31 +139,34 @@ namespace Paint
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            try
+            /*if (panelStatus == PanelStatus.Resize)
             {
-                if (panelStatus == PanelStatus.Resize)
+                panelStatus = PanelStatus.Idle;
+
+                switch (dragHandleIndex)
                 {
-                    panelStatus = PanelStatus.Idle;
+                    case 1:
+                        drawsurface.Size = new Size(e.X - drawsurface.Left, e.Y - drawsurface.Top);
+                        break;
+                    case 2:
 
-                    switch (dragHandleIndex)
-                    {
-                        case 1:
-                            drawsurface.Size = new Size(e.X - drawsurface.Left, e.Y - drawsurface.Top);
-                            break;
-                        case 2:
+                        drawsurface.Size = new Size(-(e.X - drawsurface.Left) + drawsurface.Width, -(e.Y - drawsurface.Top) + drawsurface.Height);
+                        drawsurface.Location = e.Location;
+                        break;
+                    case 3:
+                        drawsurface.Size = new Size(drawsurface.Left + drawsurface.Width - e.X, e.Y - drawsurface.Top);
+                        drawsurface.Location = new Point(e.X, drawsurface.Top);
+                        break;
+                    case 4:
+                        drawsurface.Size = new Size(e.X - drawsurface.Left, drawsurface.Top + drawsurface.Height - e.Y);
+                        drawsurface.Location = new Point(drawsurface.Left, e.Y);
+                        break;
+                }*/
 
-                            drawsurface.Size = new Size(-(e.X - drawsurface.Left) + drawsurface.Width, -(e.Y - drawsurface.Top) + drawsurface.Height);
-                            drawsurface.Location = e.Location;
-                            break;
-                        case 3:
-                            drawsurface.Size = new Size(drawsurface.Left + drawsurface.Width - e.X, e.Y - drawsurface.Top);
-                            drawsurface.Location = new Point(e.X, drawsurface.Top);
-                            break;
-                        case 4:
-                            drawsurface.Size = new Size(e.X - drawsurface.Left, drawsurface.Top + drawsurface.Height - e.Y);
-                            drawsurface.Location = new Point(drawsurface.Left, e.Y);
-                            break;
-                    }
+            if (panelStatus == PanelStatus.Resize) 
+            {
+                panelStatus = PanelStatus.Idle;
+            }
                     // store the current image and resize the bitmap contain image
                     Image OldImage = drawsurface.Image;
                     drawsurface.Image = new Bitmap(drawsurface.Width, drawsurface.Height);
@@ -150,9 +175,7 @@ namespace Paint
                     g.DrawImage(OldImage, new Rectangle(0, 0, OldImage.Width, OldImage.Height));
 
                     drawsurface.PushRedo(drawsurface.Image);
-                }
-            }
-            catch { }
+        
             this.Refresh();
         }
         #endregion
