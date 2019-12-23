@@ -12,7 +12,7 @@ namespace Paint
 {
     public partial class Test : MetroFramework.Forms.MetroForm
     {
-        Surface surface;
+        public Surface surface;
         public static Shape CurrentShape { get; set; }
         public static BrushType CurrentBrush { get; set; }
         public static Color color{ get; set; }
@@ -48,7 +48,7 @@ namespace Paint
             fileUC1.OpenClicked += FileUC1_OpenClicked;
             //always start with pencil
             CurrentBrush = BrushType.Pencil;
-
+            color = Color.Black;
         }
 
         private void FileUC1_OpenClicked(object sender, EventArgs e)

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 
 namespace Paint
 {
@@ -19,7 +21,9 @@ namespace Paint
         Rectangle OldRect;
         Rectangle AreaRect;
 
+        GraphicsPath path;
         Graphics grp;
+        Graphics gra;
         Pen pen;
         Color color;
         int Pensize;
@@ -28,11 +32,14 @@ namespace Paint
 
         Stack<Bitmap> Undo;
         Stack<Bitmap> Redo;
+        Stack<Point> UndoLocation;
+        Stack<Point> RedoLocation;
+
 
         Point MouseDown;
         Shape shape;
         #endregion
-        //List<Point> points = null;
+        List<Point> points = new List<Point>();
 
 
         #region Init Surface
@@ -41,6 +48,8 @@ namespace Paint
             InitializeComponent();
             Undo = new Stack<Bitmap>();
             Redo = new Stack<Bitmap>();
+            UndoLocation = new Stack<Point>();
+            RedoLocation = new Stack<Point>();
 
             Location = new Point(100, 100);
             Size = new Size(100, 100);
@@ -59,14 +68,18 @@ namespace Paint
         {
             base.OnPaint(pe);
 
-
+            switch (CurrentStatus)
+            {
+                case DrawStatus.ShapeDraw:
+                    DrawShape.Draw(pe.Graphics, pen, AreaRect, Test.CurrentShape);
+                    break;
+            }
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
             MouseDown = e.Location;
-
             switch (CurrentStatus)
             {
                 case DrawStatus.Idle:
@@ -75,11 +88,14 @@ namespace Paint
                     {
                         color = Test.color;
                         Pensize = Test.PenSize;
+                        points.Add(e.Location);
+
                     }
                     SetGraphics();
+
                     Cursor = Cursors.Cross;
                     break;
-                #region undone 
+/*                #region undone 
                 case DrawStatus.Edit:
                     if (Draghandle != 9)
                     {
@@ -98,6 +114,7 @@ namespace Paint
 
                         DrawShape.Draw(grp, pen, AreaRect, Test.CurrentShape);
                         Redo.Push(new Bitmap(Image));
+                        RedoLocation.Push(Location);
 
                         DrawShape.Draw(grp, pen, AreaRect, shape);
                         AreaRect = Rectangle.Empty;
@@ -105,7 +122,7 @@ namespace Paint
                     }
                     break;
                     #endregion
-            }
+*/            }
         }
 
 
@@ -113,38 +130,19 @@ namespace Paint
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
-
             switch (CurrentStatus)
             {
                 case DrawStatus.ToolDraw:
                     DrawDrag(MouseDown, e.Location, Test.CurrentBrush);
                     MouseDown = e.Location;
+                    points.Add(e.Location);
                     break;
-                //ongoing
                 case DrawStatus.ShapeDraw:
                     AreaRect = DrawShape.CreateRectangle(MouseDown, e.Location);
                     break;
-                case DrawStatus.Edit:
-                    Draghandle = Edit.GetDragHandle(e.Location, AreaRect);
-                    if (Draghandle < 9)
-                    {
-                        UpdateCursors();
-                    }
-                    else if (AreaRect.Contains(e.Location))
-                    {
-                        Cursor = Cursors.SizeAll;
-                    }
-                    else Cursor = Cursors.Default;
-                    break;
-                case DrawStatus.Resizing:
-                    Edit.UpdateResizeRect(ref AreaRect, OldRect, MouseDown, e.Location, Draghandle);
-                    break;
-
-                case DrawStatus.Moving:
-                    Edit.UpdateMoveRect(ref AreaRect, OldRect, MouseDown, e.Location);
-                    break;
             }
             this.Refresh();
+                    
         }
 
 
@@ -152,11 +150,33 @@ namespace Paint
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
+            points.Clear();
             switch (CurrentStatus)
             {
                 case DrawStatus.ToolDraw:
                     CurrentStatus = DrawStatus.Idle;
                     Redo.Push(new Bitmap(Image));
+                    RedoLocation.Push(Location);
+                    Cursor = Cursors.Default;
+
+                    if (path != null) path.ClearMarkers();
+                    if (Test.CurrentBrush == BrushType.Brush) ; //grp.DrawPath(pen, path);
+                    
+                    break;
+                case DrawStatus.ShapeDraw:
+                    grp = CreateGraphics();
+
+                    Undo.Push(new Bitmap(Image));
+                    Redo.Clear();
+
+                    Bitmap temp = (Bitmap)Image;
+                    Image = new Bitmap(Width, Height);
+                    grp = Graphics.FromImage(Image);
+                    grp.DrawImage(temp, 0, 0);
+
+                    DrawShape.Draw(grp, pen, AreaRect, Test.CurrentShape);
+                    CurrentStatus = DrawStatus.Idle;
+
                     Cursor = Cursors.Default;
                     break;
                     //ongoing
@@ -169,14 +189,18 @@ namespace Paint
             {
                 case BrushType.Pencil:
                     Undo.Push(new Bitmap(Image));
+                    UndoLocation.Push(Location);
                     Redo.Clear();
+                    RedoLocation.Clear();
                     pen = new Pen(color, 10);
                     pen.StartCap = pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
                     CurrentStatus = DrawStatus.ToolDraw;
                     break;
                 case BrushType.Eraser:
                     Undo.Push(new Bitmap(Image));
+                    UndoLocation.Push(Location);
                     Redo.Clear();
+                    RedoLocation.Clear();
                     pen = new Pen(Color.Transparent, 10);
                     pen.StartCap = pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
                     grp.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
@@ -184,20 +208,30 @@ namespace Paint
                     break;
                 case BrushType.Bucket:
                     Undo.Push(new Bitmap(Image));
+                    UndoLocation.Push(Location);
                     Redo.Clear();
+                    RedoLocation.Clear();
                     FloodFill(MouseDown, color);
                     Redo.Push(new Bitmap(Image));
+                    RedoLocation.Push(Location);
                     break;
                 case BrushType.Brush:
                     Undo.Push(new Bitmap(Image));
+                    UndoLocation.Push(Location);
                     Redo.Clear();
+                    RedoLocation.Clear();
                     pen = new Pen(Color.FromArgb(10, color), 10);
                     pen.StartCap = pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
+                    
                     //grp.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
                     CurrentStatus = DrawStatus.ToolDraw;
                     break;
                 case BrushType.Picker:
                     // ongoing
+                    break;
+                case BrushType.Shape:
+                    pen = new Pen(color, 10);
+                    CurrentStatus = DrawStatus.ShapeDraw;
                     break;
             }
         }
@@ -206,7 +240,6 @@ namespace Paint
         //bucket
         private void FloodFill(Point node, Color replaceColor)
         {
-
             Bitmap DrawBitmap = new Bitmap(Image);
             Color targetColor = DrawBitmap.GetPixel(node.X, node.Y);
 
@@ -239,6 +272,7 @@ namespace Paint
                 }
             }
             Image = DrawBitmap;
+
         }
         //chuột kéo 
         private void DrawDrag(Point mouseDown, Point location, BrushType currentBrush)
@@ -259,13 +293,19 @@ namespace Paint
                     grp.DrawLine(pen, mouseDown, location);
                     break;
                 case BrushType.Brush:
-                    //GraphicsPath path = new GraphicsPath();     
-                    grp = Graphics.FromImage(Image);
-                    //grp.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+                    path = new GraphicsPath();
+                    Bitmap temp = (Bitmap)Image;
+           
+                    gra = Graphics.FromImage(temp);
+                    gra.CompositingMode = CompositingMode.SourceCopy;
 
-                    //for (int i=0;i<points.Count;i++)
+                    grp = (Graphics)gra;
+                    grp.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+
+                    path.AddLines(points.ToArray());
+                    gra.DrawPath(pen, path);
                     //pen.LineJoin = LineJoin.Round;
-                    grp.DrawLine(pen, mouseDown, location);
+                    
 
 
                     break;
@@ -295,16 +335,18 @@ namespace Paint
                 case 4:
                 case 5:
                     Cursor = Cursors.SizeNS;
-                    break;
+                    break; 
             }
         }
 
         #region Undo & Redo
         public void UndoPress()
         {
-            if (Undo.Count > 0)
+            if (Undo.Count > 0 && UndoLocation.Count > 0) 
             {
+                RedoLocation.Push(UndoLocation.Peek());
                 Redo.Push(Undo.Peek());
+                Location = UndoLocation.Pop();
                 Image = Undo.Peek();
                 Size = Undo.Pop().Size;
             }
@@ -312,9 +354,11 @@ namespace Paint
 
         public void RedoPress()
         {
-            if (Redo.Count > 1)
+            if (Redo.Count > 1 && RedoLocation.Count > 1) 
             {
+                UndoLocation.Push(RedoLocation.Pop());
                 Undo.Push(Redo.Pop());
+                Location = RedoLocation.Peek();
                 Image = Redo.Peek();
                 Size = Image.Size;
             }

@@ -162,7 +162,7 @@ namespace Paint
                         drawsurface.Location = new Point(drawsurface.Left, e.Y);
                         break;
                 }*/
-
+                
             if (panelStatus == PanelStatus.Resize) 
             {
                 panelStatus = PanelStatus.Idle;
