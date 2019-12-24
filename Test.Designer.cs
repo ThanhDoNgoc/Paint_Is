@@ -39,6 +39,8 @@
             this.SaveB = new MetroFramework.Controls.MetroButton();
             this.EraserB = new MetroFramework.Controls.MetroButton();
             this.Transition1 = new BunifuAnimatorNS.BunifuTransition(this.components);
+            this.ESize = new MetroFramework.Controls.MetroTrackBar();
+            this.shapesUC1 = new Paint.ShapesUC();
             this.fileUC1 = new Paint.FileUC();
             this.penUC1 = new Paint.PenUC();
             this.drawPanel1 = new Paint.DrawPanel();
@@ -109,6 +111,7 @@
             this.ShapesB.Size = new System.Drawing.Size(67, 62);
             this.ShapesB.TabIndex = 6;
             this.ShapesB.UseSelectable = true;
+            this.ShapesB.Click += new System.EventHandler(this.ShapesB_Click);
             // 
             // SaveB
             // 
@@ -155,6 +158,27 @@
             animation1.TimeCoeff = 0F;
             animation1.TransparencyCoeff = 0F;
             this.Transition1.DefaultAnimation = animation1;
+
+            // 
+            // ESize
+            // 
+            this.ESize.BackColor = System.Drawing.Color.Transparent;
+            this.Transition1.SetDecoration(this.ESize, BunifuAnimatorNS.DecorationType.None);
+            this.ESize.Location = new System.Drawing.Point(0, 146);
+            this.ESize.Name = "ESize";
+            this.ESize.Size = new System.Drawing.Size(220, 23);
+            this.ESize.TabIndex = 12;
+            this.ESize.Value = 10;
+            this.ESize.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ESize_Scroll);
+            // 
+            // shapesUC1
+            // 
+            this.Transition1.SetDecoration(this.shapesUC1, BunifuAnimatorNS.DecorationType.None);
+            this.shapesUC1.Location = new System.Drawing.Point(0, 66);
+            this.shapesUC1.Name = "shapesUC1";
+            this.shapesUC1.Size = new System.Drawing.Size(220, 500);
+            this.shapesUC1.TabIndex = 11;
+
             // 
             // fileUC1
             // 
@@ -177,8 +201,9 @@
             // drawPanel1
             // 
             this.Transition1.SetDecoration(this.drawPanel1, BunifuAnimatorNS.DecorationType.None);
-            this.drawPanel1.Location = new System.Drawing.Point(329, 78);
-            this.drawPanel1.Margin = new System.Windows.Forms.Padding(4);
+
+            this.drawPanel1.Location = new System.Drawing.Point(247, 66);
+
             this.drawPanel1.Name = "drawPanel1";
             this.drawPanel1.Size = new System.Drawing.Size(1360, 615);
             this.drawPanel1.TabIndex = 0;
@@ -188,7 +213,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1720, 725);
+
+            this.ClientSize = new System.Drawing.Size(1290, 589);
+            this.Controls.Add(this.ESize);
+            this.Controls.Add(this.shapesUC1);
+
             this.Controls.Add(this.fileUC1);
             this.Controls.Add(this.penUC1);
             this.Controls.Add(this.FileB);
@@ -202,7 +231,10 @@
             this.Transition1.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Test";
+
             this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Test_FormClosing);
+
             this.ResumeLayout(false);
 
         }
@@ -220,5 +252,7 @@
         private BunifuAnimatorNS.BunifuTransition Transition1;
         private FileUC fileUC1;
         private PenUC penUC1;
+        private ShapesUC shapesUC1;
+        private MetroFramework.Controls.MetroTrackBar ESize;
     }
 }

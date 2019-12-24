@@ -143,14 +143,20 @@
     <Content Include="Buttons\030-paint-bucket.png" />
     <Content Include="Buttons\035-paint-brush-1.png" />
     <Content Include="Buttons\050-pencil.png" />
+    <Content Include="Buttons\circle.png" />
     <Content Include="Buttons\curved-line.png" />
+    <Content Include="Buttons\hexagon.png" />
     <Content Include="Buttons\horizontal-line.png" />
     <Content Include="Buttons\icons8-arrow-100 - Copy.png" />
     <Content Include="Buttons\icons8-arrow-100.png" />
     <Content Include="Buttons\icons8-redo-96.png" />
     <Content Include="Buttons\icons8-undo-96.png" />
+    <Content Include="Buttons\Logo-removebg-preview.ico" />
+    <Content Include="Buttons\pentagon.png" />
     <Content Include="Buttons\save.png" />
+    <Content Include="Buttons\square.png" />
     <Content Include="Buttons\star.png" />
+    <Content Include="Buttons\triangle-2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -165,8 +165,10 @@ namespace Paint
                     Undo.Push(new Bitmap(Image));
                     UndoLocation.Push(Location);
                     Redo.Clear();
+
                     RedoLocation.Clear();
-                    pen = new Pen(color, 10);
+
+                    pen = new Pen(color, Test.PenSize);
                     pen.StartCap = pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
                     CurrentStatus = DrawStatus.ToolDraw;
                     break;
@@ -175,7 +177,10 @@ namespace Paint
                     UndoLocation.Push(Location);
                     Redo.Clear();
                     RedoLocation.Clear();
-                    pen = new Pen(Color.Transparent, 10);
+
+
+                    pen = new Pen(Color.Transparent, Test.EraserSize);
+
                     pen.StartCap = pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
                     grp.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
                     CurrentStatus = DrawStatus.ToolDraw;
@@ -193,8 +198,11 @@ namespace Paint
                     Undo.Push(new Bitmap(Image));
                     UndoLocation.Push(Location);
                     Redo.Clear();
+
                     RedoLocation.Clear();
-                    pen = new Pen(Color.FromArgb(10, color), 10);
+
+                    pen = new Pen(Color.FromArgb(10, color), Test.PenSize);
+
                     pen.StartCap = pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
                     
                     //grp.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
