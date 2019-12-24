@@ -162,20 +162,20 @@ namespace Paint
                         drawsurface.Location = new Point(drawsurface.Left, e.Y);
                         break;
                 }*/
-                
-            if (panelStatus == PanelStatus.Resize) 
+
+            if (panelStatus == PanelStatus.Resize)
             {
                 panelStatus = PanelStatus.Idle;
             }
-                    // store the current image and resize the bitmap contain image
-                    Image OldImage = drawsurface.Image;
-                    drawsurface.Image = new Bitmap(drawsurface.Width, drawsurface.Height);
-                    // draw a new image with new size of the surface
-                    Graphics g = Graphics.FromImage(drawsurface.Image);
-                    g.DrawImage(OldImage, new Rectangle(0, 0, OldImage.Width, OldImage.Height));
+            // store the current image and resize the bitmap contain image
+            Image OldImage = drawsurface.Image;
+            drawsurface.Image = new Bitmap(drawsurface.Width, drawsurface.Height);
+            // draw a new image with new size of the surface
+            Graphics g = Graphics.FromImage(drawsurface.Image);
+            g.DrawImage(OldImage, new Rectangle(0, 0, OldImage.Width, OldImage.Height));
 
-                    drawsurface.PushRedo(drawsurface.Image);
-        
+            drawsurface.PushRedo(drawsurface.Image);
+
             this.Refresh();
         }
         #endregion

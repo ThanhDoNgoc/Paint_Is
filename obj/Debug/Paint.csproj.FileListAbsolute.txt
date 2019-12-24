@@ -89,8 +89,6 @@ C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\bin\Debug\Paint.pdb
 C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\bin\Debug\MetroFramework.Design.dll
 C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\bin\Debug\MetroFramework.dll
 C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\bin\Debug\MetroFramework.Fonts.dll
-C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\bin\Debug\Bunifu_UI_v1.5.3.xml
-C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\bin\Debug\LollipopUI.pdb
 C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\obj\Debug\Paint.csprojAssemblyReference.cache
 C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\obj\Debug\Paint.FileUC.resources
 C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\obj\Debug\Paint.PenUC.resources
@@ -101,4 +99,3 @@ C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\obj\Debug\Paint.csproj.G
 C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\obj\Debug\Paint.csproj.CopyComplete
 C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\obj\Debug\Paint.exe
 C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\obj\Debug\Paint.pdb
-

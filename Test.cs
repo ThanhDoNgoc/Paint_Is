@@ -16,7 +16,10 @@ namespace Paint
         public static Shape CurrentShape { get; set; }
         public static BrushType CurrentBrush { get; set; }
         public static BrushType PenBrush { get; set; }
+        public static Shape shapeB { get; set; }
         public static Color color{ get; set; }
+        public static Color PenColor { get; set; }
+        public static Color ShapesColor { get; set; }
         public event EventHandler PanelPaint;
 
         public static int PenSize;
@@ -34,6 +37,25 @@ namespace Paint
             surface.MouseMove += Surface_MouseMove;
             surface.MouseLeave += Surface_MouseLeave;
             surface.SizeChanged += Surface_SizeChange;
+            //doi anh shape
+            shapesUC1.LineClicked += ShapesUC1_LineClicked;
+            shapesUC1.CircleClicked += ShapesUC1_CircleClicked;
+            shapesUC1.StarClicked += ShapesUC1_StarClicked;
+            shapesUC1.TriangleClicked += ShapesUC1_TriangleClicked;
+            shapesUC1.RectangleClicked += ShapesUC1_RectangleClicked;
+            shapesUC1.PentagonClicked += ShapesUC1_PentagonClicked;
+            shapesUC1.HexagonClicked += ShapesUC1_HexagonClicked;
+            shapesUC1.RightArrowClicked += ShapesUC1_RightArrowClicked;
+            shapesUC1.LeftArrowClicked += ShapesUC1_LeftArrowClicked;
+            //doi mau shape
+            shapesUC1.WhiteClicked += ShapesUC1_WhiteClicked;
+            shapesUC1.RedClicked += ShapesUC1_RedClicked;
+            shapesUC1.YellowClicked += ShapesUC1_YellowClicked;
+            shapesUC1.OrangeClicked += ShapesUC1_OrangeClicked;
+            shapesUC1.BlackClicked += ShapesUC1_BlackClicked;
+            shapesUC1.BlueClicked += ShapesUC1_BlueClicked;
+            shapesUC1.GreenClicked += ShapesUC1_GreenClicked;
+            shapesUC1.PurpleClicked += ShapesUC1_PurpleClicked;
 
             //đổi ảnh button
             penUC1.PencilClicked += PenUC1_PencilClicked;
@@ -54,12 +76,146 @@ namespace Paint
 
             //always start with...
             CurrentBrush = BrushType.Pencil;
-            PenBrush = CurrentBrush;
+            CurrentShape = Shape.Star;
+            shapeB = CurrentShape;
+            PenBrush = BrushType.Pencil ;
             PenSize = 10;
             color = Color.Black;
             PenB.BackColor = Color.FromArgb(50, Color.Black);
             EraserSize = 10;
+            ShapesB.BackColor = Color.FromArgb(50, Color.Black);
+            ShapesColor = Color.Black;
 
+        }
+
+        private void ShapesUC1_PurpleClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackColor = Color.FromArgb(50, ShapesUC.Instance.getPurple());
+            color = ShapesUC.Instance.getPurple();
+            ShapesColor = color;
+        }
+
+        private void ShapesUC1_GreenClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackColor = Color.FromArgb(50, ShapesUC.Instance.getGreen());
+            color = ShapesUC.Instance.getGreen();
+            ShapesColor = color;
+        }
+
+        private void ShapesUC1_BlueClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackColor = Color.FromArgb(50, ShapesUC.Instance.getBlue());
+            color = ShapesUC.Instance.getBlue();
+            ShapesColor = color;
+        }
+
+        private void ShapesUC1_BlackClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackColor = Color.FromArgb(50, ShapesUC.Instance.getBlack());
+            color = ShapesUC.Instance.getBlack();
+            ShapesColor = color;
+        }
+
+        private void ShapesUC1_OrangeClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackColor = Color.FromArgb(50, ShapesUC.Instance.getOrange());
+            color = ShapesUC.Instance.getOrange();
+            ShapesColor = color;
+        }
+
+        private void ShapesUC1_YellowClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackColor = Color.FromArgb(50, ShapesUC.Instance.getYellow());
+            color = ShapesUC.Instance.getYellow();
+            ShapesColor = color;
+        }
+
+        private void ShapesUC1_RedClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackColor = Color.FromArgb(50, ShapesUC.Instance.getRed());
+            color = ShapesUC.Instance.getRed();
+            ShapesColor = color;
+        }
+
+        private void ShapesUC1_WhiteClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackColor = Color.FromArgb(50, ShapesUC.Instance.getWhite());
+            color = ShapesUC.Instance.getWhite();
+            ShapesColor = color;
+        }
+
+        private void ShapesUC1_LeftArrowClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackgroundImage = ShapesUC.Instance.getLeftArrow();
+            Test.CurrentBrush = BrushType.Shape;
+            Test.CurrentShape = Shape.LeftArrow;
+            shapeB = CurrentShape;
+
+        }
+
+        private void ShapesUC1_RightArrowClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackgroundImage = ShapesUC.Instance.getRightArrow();
+            Test.CurrentBrush = BrushType.Shape;
+            Test.CurrentShape = Shape.RightArrow;
+            shapeB = CurrentShape;
+
+        }
+
+        private void ShapesUC1_HexagonClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackgroundImage = ShapesUC.Instance.getHexagon();
+            Test.CurrentBrush = BrushType.Shape;
+            Test.CurrentShape = Shape.Hexagon;
+            shapeB = CurrentShape;
+        }
+
+        private void ShapesUC1_PentagonClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackgroundImage = ShapesUC.Instance.getPentagon();
+            Test.CurrentBrush = BrushType.Shape;
+            Test.CurrentShape = Shape.Pentagon;
+            shapeB = CurrentShape;
+        }
+
+        private void ShapesUC1_RectangleClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackgroundImage = ShapesUC.Instance.getRectangle();
+            Test.CurrentBrush = BrushType.Shape;
+            Test.CurrentShape = Shape.RecTangle;
+            shapeB = CurrentShape;
+        }
+
+        private void ShapesUC1_TriangleClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackgroundImage = ShapesUC.Instance.getTriangle();
+            Test.CurrentBrush = BrushType.Shape;
+            Test.CurrentShape = Shape.Triangle;
+            shapeB = CurrentShape;
+        }
+
+        private void ShapesUC1_StarClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackgroundImage = ShapesUC.Instance.getStar();
+            Test.CurrentBrush = BrushType.Shape;
+            Test.CurrentShape = Shape.Star;
+            shapeB = CurrentShape;
+        }
+
+        private void ShapesUC1_CircleClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackgroundImage = ShapesUC.Instance.getCircle();
+            Test.CurrentBrush = BrushType.Shape;
+            Test.CurrentShape = Shape.Circle;
+            shapeB = CurrentShape;
+        }
+
+        private void ShapesUC1_LineClicked(object sender, EventArgs e)
+        {
+            ShapesB.BackgroundImage = ShapesUC.Instance.getLine();
+            Test.CurrentBrush = BrushType.Shape;
+            Test.CurrentShape = Shape.Line;
+            shapeB = CurrentShape;
         }
 
         private void FileUC1_OpenClicked(object sender, EventArgs e)
@@ -71,48 +227,56 @@ namespace Paint
         {
             PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getPurple());
             color = PenUC.Instance.getPurple();
+            PenColor = color;
         }
 
         private void PenUC1_GreenClicked(object sender, EventArgs e)
         {
             PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getGreen());
             color = PenUC.Instance.getGreen();
+            PenColor = color;
         }
 
         private void PenUC1_BlueClicked(object sender, EventArgs e)
         {
             PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getBlue());
             color = PenUC.Instance.getBlue();
+            PenColor = color;
         }
 
         private void PenUC1_BlackClicked(object sender, EventArgs e)
         {
             PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getBlack());
             color = PenUC.Instance.getBlack();
+            PenColor = color;
         }
 
         private void PenUC1_OrangeClicked(object sender, EventArgs e)
         {
             PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getOrange());
             color = PenUC.Instance.getOrange();
+            PenColor = color;
         }
 
         private void PenUC1_YellowClicked(object sender, EventArgs e)
         {
             PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getYellow());
             color = PenUC.Instance.getYellow();
+            PenColor = color;
         }
 
         private void PenUC1_RedClicked(object sender, EventArgs e)
         {
             PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getRed());
             color = PenUC.Instance.getRed();
+            PenColor = color;
         }
 
         private void PenUC1_WhiteClicked(object sender, EventArgs e)
         {
             PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getWhite());
             color = PenUC.Instance.getWhite();
+            PenColor = color;
         }
         private void PenUC1_BucketClicked(object sender, EventArgs e)
         {
@@ -137,6 +301,7 @@ namespace Paint
             Test.CurrentBrush = BrushType.Pencil;
             PenBrush = CurrentBrush;
         }
+
 
         private void Surface_SizeChange(object sender, EventArgs e)
         {
@@ -198,10 +363,7 @@ namespace Paint
                 HideAllPanels();
                 Transition1.ShowSync(penUC1, false, BunifuAnimatorNS.Animation.HorizSlide);
                 CurrentBrush = PenBrush;
-            }
-            else if (penUC1.Visible && CurrentBrush == BrushType.Eraser)
-            {
-                CurrentBrush = PenBrush;
+                color = PenColor;
             }
             else
                 Transition1.HideSync(penUC1, false, BunifuAnimatorNS.Animation.HorizSlide);
@@ -243,6 +405,9 @@ namespace Paint
             {
                 HideAllPanels();
                 Transition1.ShowSync(shapesUC1, false, BunifuAnimatorNS.Animation.HorizSlide);
+                CurrentShape = shapeB;
+                color = ShapesColor;
+                CurrentBrush = BrushType.Shape;
             }
             else
                 Transition1.HideSync(shapesUC1, false, BunifuAnimatorNS.Animation.HorizSlide);
@@ -264,6 +429,11 @@ namespace Paint
         private void ESize_Scroll(object sender, ScrollEventArgs e)
         {
             EraserSize = ESize.Value;
+        }
+
+        private void shapesUC1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -53,7 +53,7 @@
             this.Transition1.SetDecoration(this.FileB, BunifuAnimatorNS.DecorationType.None);
             this.FileB.ForeColor = System.Drawing.SystemColors.Control;
             this.FileB.Location = new System.Drawing.Point(0, 9);
-            this.FileB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FileB.Margin = new System.Windows.Forms.Padding(4);
             this.FileB.Name = "FileB";
             this.FileB.Size = new System.Drawing.Size(93, 62);
             this.FileB.TabIndex = 10;
@@ -67,7 +67,7 @@
             this.PenB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Transition1.SetDecoration(this.PenB, BunifuAnimatorNS.DecorationType.None);
             this.PenB.Location = new System.Drawing.Point(631, 9);
-            this.PenB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PenB.Margin = new System.Windows.Forms.Padding(4);
             this.PenB.Name = "PenB";
             this.PenB.Size = new System.Drawing.Size(67, 62);
             this.PenB.TabIndex = 9;
@@ -80,7 +80,7 @@
             this.UndoB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Transition1.SetDecoration(this.UndoB, BunifuAnimatorNS.DecorationType.None);
             this.UndoB.Location = new System.Drawing.Point(329, 9);
-            this.UndoB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UndoB.Margin = new System.Windows.Forms.Padding(4);
             this.UndoB.Name = "UndoB";
             this.UndoB.Size = new System.Drawing.Size(67, 62);
             this.UndoB.TabIndex = 8;
@@ -93,7 +93,7 @@
             this.RedoB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Transition1.SetDecoration(this.RedoB, BunifuAnimatorNS.DecorationType.None);
             this.RedoB.Location = new System.Drawing.Point(404, 9);
-            this.RedoB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RedoB.Margin = new System.Windows.Forms.Padding(4);
             this.RedoB.Name = "RedoB";
             this.RedoB.Size = new System.Drawing.Size(67, 62);
             this.RedoB.TabIndex = 7;
@@ -106,7 +106,7 @@
             this.ShapesB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Transition1.SetDecoration(this.ShapesB, BunifuAnimatorNS.DecorationType.None);
             this.ShapesB.Location = new System.Drawing.Point(780, 9);
-            this.ShapesB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ShapesB.Margin = new System.Windows.Forms.Padding(4);
             this.ShapesB.Name = "ShapesB";
             this.ShapesB.Size = new System.Drawing.Size(67, 62);
             this.ShapesB.TabIndex = 6;
@@ -119,7 +119,7 @@
             this.SaveB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Transition1.SetDecoration(this.SaveB, BunifuAnimatorNS.DecorationType.None);
             this.SaveB.Location = new System.Drawing.Point(113, 9);
-            this.SaveB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SaveB.Margin = new System.Windows.Forms.Padding(4);
             this.SaveB.Name = "SaveB";
             this.SaveB.Size = new System.Drawing.Size(67, 62);
             this.SaveB.TabIndex = 5;
@@ -131,7 +131,7 @@
             this.EraserB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Transition1.SetDecoration(this.EraserB, BunifuAnimatorNS.DecorationType.None);
             this.EraserB.Location = new System.Drawing.Point(705, 9);
-            this.EraserB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EraserB.Margin = new System.Windows.Forms.Padding(4);
             this.EraserB.Name = "EraserB";
             this.EraserB.Size = new System.Drawing.Size(67, 62);
             this.EraserB.TabIndex = 3;
@@ -158,7 +158,6 @@
             animation1.TimeCoeff = 0F;
             animation1.TransparencyCoeff = 0F;
             this.Transition1.DefaultAnimation = animation1;
-
             // 
             // ESize
             // 
@@ -174,11 +173,12 @@
             // shapesUC1
             // 
             this.Transition1.SetDecoration(this.shapesUC1, BunifuAnimatorNS.DecorationType.None);
-            this.shapesUC1.Location = new System.Drawing.Point(0, 66);
+            this.shapesUC1.Location = new System.Drawing.Point(0, 78);
+            this.shapesUC1.Margin = new System.Windows.Forms.Padding(4);
             this.shapesUC1.Name = "shapesUC1";
-            this.shapesUC1.Size = new System.Drawing.Size(220, 500);
+            this.shapesUC1.Size = new System.Drawing.Size(293, 668);
             this.shapesUC1.TabIndex = 11;
-
+            this.shapesUC1.Load += new System.EventHandler(this.shapesUC1_Load);
             // 
             // fileUC1
             // 
@@ -201,11 +201,9 @@
             // drawPanel1
             // 
             this.Transition1.SetDecoration(this.drawPanel1, BunifuAnimatorNS.DecorationType.None);
-
-            this.drawPanel1.Location = new System.Drawing.Point(247, 66);
-
+            this.drawPanel1.Location = new System.Drawing.Point(301, 77);
             this.drawPanel1.Name = "drawPanel1";
-            this.drawPanel1.Size = new System.Drawing.Size(1360, 615);
+            this.drawPanel1.Size = new System.Drawing.Size(1306, 615);
             this.drawPanel1.TabIndex = 0;
             this.drawPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.drawPanel1_Paint);
             // 
@@ -213,11 +211,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-
             this.ClientSize = new System.Drawing.Size(1290, 589);
-            this.Controls.Add(this.ESize);
             this.Controls.Add(this.shapesUC1);
-
+            this.Controls.Add(this.ESize);
             this.Controls.Add(this.fileUC1);
             this.Controls.Add(this.penUC1);
             this.Controls.Add(this.FileB);
@@ -229,12 +225,11 @@
             this.Controls.Add(this.EraserB);
             this.Controls.Add(this.drawPanel1);
             this.Transition1.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Test";
-
             this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Test_FormClosing);
-
             this.ResumeLayout(false);
 
         }
