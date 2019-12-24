@@ -9,8 +9,12 @@ namespace Paint
 {
     class DrawShape
     {
+
+        private static Point MouseDown, MouseCurrent;
         public static Rectangle CreateRectangle(Point ptMouseDown, Point ptMouseCurrent)
         {
+            MouseDown = ptMouseDown;
+            MouseCurrent = ptMouseCurrent;
             return new Rectangle(
                 Math.Min(ptMouseDown.X, ptMouseCurrent.X),
                 Math.Min(ptMouseDown.Y, ptMouseCurrent.Y),
@@ -132,6 +136,10 @@ namespace Paint
                 case Shape.Circle:
                     g.DrawEllipse(pen, rect);
                     return;
+                case Shape.Line:
+                    pen.StartCap = pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
+                    g.DrawLine(pen, MouseDown, MouseCurrent);
+                    return;
                 case Shape.RightArrow:
                     pts = RightArrowPoints(rect);
                     break;
@@ -164,6 +172,6 @@ namespace Paint
 
     public enum Shape
     {
-        RecTangle, RightArrow, LeftArrow, UpArrow, DownArrow, Circle, Star, Triangle, Pentagon, Hexagon
+        RecTangle, RightArrow, LeftArrow, UpArrow, DownArrow, Circle, Star, Triangle, Pentagon, Hexagon, Line
     }
 }

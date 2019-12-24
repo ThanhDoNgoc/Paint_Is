@@ -95,34 +95,8 @@ namespace Paint
 
                     Cursor = Cursors.Cross;
                     break;
-/*                #region undone 
-                case DrawStatus.Edit:
-                    if (Draghandle != 9)
-                    {
-                        OldRect = AreaRect;
-                        CurrentStatus = DrawStatus.Resizing;
-                    }
-                    else if (AreaRect.Contains(e.Location))
-                    {
-                        OldRect = AreaRect;
-                        CurrentStatus = DrawStatus.Moving;
-                    }
-                    else
-                    {
-                        CurrentStatus = DrawStatus.Idle;
-                        grp = Graphics.FromImage(Image);
 
-                        DrawShape.Draw(grp, pen, AreaRect, Test.CurrentShape);
-                        Redo.Push(new Bitmap(Image));
-                        RedoLocation.Push(Location);
-
-                        DrawShape.Draw(grp, pen, AreaRect, shape);
-                        AreaRect = Rectangle.Empty;
-                        this.Refresh();
-                    }
-                    break;
-                    #endregion
-*/            }
+            }
         }
 
 
@@ -313,31 +287,6 @@ namespace Paint
             }
         }
 
-        private void UpdateCursors()
-        {
-           switch (Draghandle)
-            {
-                case 1:
-                case 8:
-                    Cursor = Cursors.SizeNWSE;
-                    break;
-
-                case 2:
-                case 7:
-                    Cursor = Cursors.SizeWE;
-                    break;
-
-                case 3:
-                case 6:
-                    Cursor = Cursors.SizeNESW;
-                    break;
-
-                case 4:
-                case 5:
-                    Cursor = Cursors.SizeNS;
-                    break; 
-            }
-        }
 
         #region Undo & Redo
         public void UndoPress()
@@ -381,6 +330,6 @@ namespace Paint
     }
     enum DrawStatus
     {
-        Idle, LineDraw, ToolDraw, ShapeDraw, Edit, Resizing, Moving
+        Idle, ToolDraw, ShapeDraw,
     }
 }

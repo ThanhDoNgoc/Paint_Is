@@ -47,7 +47,8 @@ namespace Paint
             //Open file
             fileUC1.OpenClicked += FileUC1_OpenClicked;
             //always start with pencil
-            CurrentBrush = BrushType.Pencil;
+            CurrentBrush = BrushType.Shape;
+            CurrentShape = Shape.Line;
             color = Color.Black;
         }
 

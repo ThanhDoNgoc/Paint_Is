@@ -69,7 +69,6 @@
     <Compile Include="DrawPanel.Designer.cs">
       <DependentUpon>DrawPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Edit.cs" />
     <Compile Include="FileUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
