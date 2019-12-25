@@ -32,10 +32,12 @@ namespace Paint
         bool Saved, Changed;
         Bitmap draw;
         Graphics g;
-
+        Rectangle resolution;
         public Test()
         {
             InitializeComponent();
+            this.KeyPreview = true;
+            resolution = Screen.PrimaryScreen.Bounds;
             penUC1.Visible = false;
             fileUC1.Visible = false;
             shapesUC1.Visible = false;
@@ -309,6 +311,8 @@ namespace Paint
                     g.Clear(Color.Transparent);
                     g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
                     surface.Image = draw;
+                    surface.Height =  resolution.Height * 3 / 2;
+                    surface.Width = resolution.Width * 3 / 2;
 
                 }
                 else if (dr == DialogResult.No)
@@ -322,6 +326,8 @@ namespace Paint
                     g.Clear(Color.Transparent);
                     g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
                     surface.Image = draw;
+                    surface.Height = resolution.Height * 3 / 2;
+                    surface.Width = resolution.Width * 3 / 2;
                 }
                 else if (dr==DialogResult.Cancel)
                 {
@@ -337,6 +343,8 @@ namespace Paint
                 g.Clear(Color.Transparent);
                 g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
                 surface.Image = draw;
+                surface.Height = resolution.Height * 3 / 2;
+                surface.Width = resolution.Width * 3 / 2;
             }
         }
         private void PenUC1_PurpleClicked(object sender, EventArgs e)
@@ -563,6 +571,22 @@ namespace Paint
         private void fileUC1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Test_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+                FileUC1_SaveClicked(sender,e);
+            if (e.Control && e.KeyCode == Keys.Z)
+                UndoB_Click(sender, e);
+            if (e.Control && e.KeyCode == Keys.Y)
+                RedoB_Click(sender, e);
+            if (e.Control && e.KeyCode == Keys.D1)
+                PenB_Click(sender, e);
+            if (e.Control && e.KeyCode == Keys.D2)
+                EraserB_Click_1(sender, e);
+            if (e.Control && e.KeyCode == Keys.D3)
+                ShapesB_Click(sender, e);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
