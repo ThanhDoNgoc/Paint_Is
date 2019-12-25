@@ -192,10 +192,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Transition1.SetDecoration(this.drawPanel1, BunifuAnimatorNS.DecorationType.None);
-            this.drawPanel1.Location = new System.Drawing.Point(226, 63);
-            this.drawPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.drawPanel1.Location = new System.Drawing.Point(329, 78);
+            this.drawPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.drawPanel1.Name = "drawPanel1";
-            this.drawPanel1.Size = new System.Drawing.Size(980, 500);
+            this.drawPanel1.Size = new System.Drawing.Size(1360, 615);
             this.drawPanel1.TabIndex = 0;
             this.drawPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.drawPanel1_Paint);
             // 
@@ -204,9 +204,10 @@
             this.shapesUC1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Transition1.SetDecoration(this.shapesUC1, BunifuAnimatorNS.DecorationType.None);
-            this.shapesUC1.Location = new System.Drawing.Point(1, 63);
+            this.shapesUC1.Location = new System.Drawing.Point(1, 78);
+            this.shapesUC1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.shapesUC1.Name = "shapesUC1";
-            this.shapesUC1.Size = new System.Drawing.Size(220, 543);
+            this.shapesUC1.Size = new System.Drawing.Size(292, 543);
             this.shapesUC1.TabIndex = 11;
             this.shapesUC1.Load += new System.EventHandler(this.shapesUC1_Load);
             // 
@@ -215,42 +216,30 @@
             this.fileUC1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Transition1.SetDecoration(this.fileUC1, BunifuAnimatorNS.DecorationType.None);
-            this.fileUC1.Location = new System.Drawing.Point(0, 66);
+            this.fileUC1.Location = new System.Drawing.Point(-1, 78);
             this.fileUC1.Margin = new System.Windows.Forms.Padding(4);
             this.fileUC1.Name = "fileUC1";
             this.fileUC1.Size = new System.Drawing.Size(293, 615);
             this.fileUC1.TabIndex = 1;
+            this.fileUC1.Load += new System.EventHandler(this.fileUC1_Load);
             // 
             // penUC1
             // 
             this.penUC1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Transition1.SetDecoration(this.penUC1, BunifuAnimatorNS.DecorationType.None);
-            this.penUC1.Location = new System.Drawing.Point(0, 63);
-            this.penUC1.Margin = new System.Windows.Forms.Padding(4);
+            this.penUC1.Location = new System.Drawing.Point(0, 81);
+            this.penUC1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.penUC1.Name = "penUC1";
             this.penUC1.Size = new System.Drawing.Size(293, 615);
             this.penUC1.TabIndex = 2;
-            // 
-            // drawPanel1
-            // 
-            this.Transition1.SetDecoration(this.drawPanel1, BunifuAnimatorNS.DecorationType.None);
-            this.drawPanel1.Location = new System.Drawing.Point(329, 78);
-            this.drawPanel1.Margin = new System.Windows.Forms.Padding(4);
-            this.drawPanel1.Name = "drawPanel1";
-            this.drawPanel1.Size = new System.Drawing.Size(1360, 615);
-            this.drawPanel1.TabIndex = 0;
-            this.drawPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.drawPanel1_Paint);
             // 
             // Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1225, 574);
-            this.Controls.Add(this.ESize);
             this.ClientSize = new System.Drawing.Size(1720, 725);
-            this.Controls.Add(this.fileUC1);
-            this.Controls.Add(this.penUC1);
+            this.Controls.Add(this.ESize);
             this.Controls.Add(this.FileB);
             this.Controls.Add(this.PenB);
             this.Controls.Add(this.UndoB);
@@ -265,13 +254,12 @@
             this.Controls.Add(this.pictureBox1);
             this.Transition1.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Test";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Test_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Test";
             this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Test_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

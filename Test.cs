@@ -28,6 +28,7 @@ namespace Paint
         public static int ShapeSize;
         public static int ShapeOpacity;
 
+        string ImagedSave="";
         bool Saved, Changed;
         Bitmap draw;
         Graphics g;
@@ -81,7 +82,6 @@ namespace Paint
             penUC1.PurpleClicked += PenUC1_PurpleClicked;
             //Open,Save,New file
             fileUC1.OpenClicked += FileUC1_OpenClicked;
-
             fileUC1.SaveClicked += FileUC1_SaveClicked;
             fileUC1.SaveAsClicked += FileUC1_SaveAsClicked;
             fileUC1.NewClicked += FileUC1_NewClicked;
@@ -235,30 +235,26 @@ namespace Paint
         }
 
         private void FileUC1_OpenClicked(object sender, EventArgs e)
-        {
-            // throw new NotImplementedException();
+        { 
             
             OpenFileDialog f = new OpenFileDialog();
             f.Filter = @"Image Files(*.jpg; *.jpeg; *.bmp;*png)|*.jpg; *.jpeg; *.bmp; *.png";
-            try
-            {
+           
                 if (f.ShowDialog() == DialogResult.OK)
                 {
                     Bitmap bit = new Bitmap(f.FileName);
                     surface.Size = bit.Size;
                     surface.Image = bit;
-                    Saved = true;
+                    Saved = false;
                     Changed = false;
                     surface.PushUndo(surface.Image);
+                
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-            }
+            
+            
 
         }
-        string ImagedSave;
+        
         private void FileUC1_SaveAsClicked(object sender, EventArgs e)
         {
             SaveFileDialog f = new SaveFileDialog();
@@ -288,6 +284,7 @@ namespace Paint
             {
                 if (ImagedSave != "")
                 {
+                    
                     SaveFileDialog f = new SaveFileDialog();
                     int width = Convert.ToInt32(surface.Width);
                     int height = Convert.ToInt32(surface.Height);
@@ -297,12 +294,43 @@ namespace Paint
                 }
             }
         }
-        private void FileUC1_NewClicked(object sender,EventArgs e)
+        private void FileUC1_NewClicked(object sender, EventArgs e)
         {
-            FormClosingEventArgs f = new FormClosingEventArgs(CloseReason.UserClosing, false);
-            //closeUseDialog(f);
-          
+            if (!Saved||Changed)
             {
+                DialogResult dr = MetroFramework.MetroMessageBox.Show(this, "File chưa được lưu, bạn có muốn lưu ứng dụng ?", "Save", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                if (dr == DialogResult.Yes)
+                {
+                    Saved = false;
+                    FileUC1_SaveClicked(sender, e);
+                    draw = new Bitmap(surface.Width, surface.Height);
+                    g = Graphics.FromImage(draw);
+                    g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+                    g.Clear(Color.Transparent);
+                    g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                    surface.Image = draw;
+
+                }
+                else if (dr == DialogResult.No)
+                {
+              
+
+              
+                    draw = new Bitmap(surface.Width, surface.Height);
+                    g = Graphics.FromImage(draw);
+                    g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+                    g.Clear(Color.Transparent);
+                    g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                    surface.Image = draw;
+                }
+                else if (dr==DialogResult.Cancel)
+                {
+
+                }
+            }
+            else
+            {
+                Saved = false;
                 draw = new Bitmap(surface.Width, surface.Height);
                 g = Graphics.FromImage(draw);
                 g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
@@ -403,7 +431,7 @@ namespace Paint
 
         private void Surface_MouseDown(object sender, MouseEventArgs e)
         {
-
+            Changed = true;
         }
 
         private void Surface_MouseMove(object sender, MouseEventArgs e)
@@ -508,14 +536,17 @@ namespace Paint
 
         private void Test_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dr = MetroFramework.MetroMessageBox.Show(this, "File chưa được lưu, bạn có muốn đóng ứng dụng ?", "Save", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
-            if (dr == DialogResult.No)
+            if (!Saved || Changed)
             {
-                MetroFramework.MetroMessageBox.Show(this, "xxxx", "zzzz", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else if (dr == DialogResult.Cancel)
-            {
-                e.Cancel = true;
+                DialogResult dr = MetroFramework.MetroMessageBox.Show(this, "File chưa được lưu, bạn có muốn lưu ứng dụng ?", "Save", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                if (dr == DialogResult.Yes)
+                {
+                    FileUC1_SaveClicked(sender, e);
+                }
+                else if (dr == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
             }
         }
 
@@ -525,6 +556,11 @@ namespace Paint
         }
 
         private void shapesUC1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fileUC1_Load(object sender, EventArgs e)
         {
 
         }
