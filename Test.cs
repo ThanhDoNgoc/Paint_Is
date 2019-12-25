@@ -19,6 +19,9 @@ namespace Paint
         public event EventHandler PanelPaint;
         int PenSize;
         bool Saved, Changed;
+        Bitmap draw;
+        Graphics g;
+       
 
         public Test()
         {
@@ -49,7 +52,7 @@ namespace Paint
             fileUC1.OpenClicked += FileUC1_OpenClicked;
             fileUC1.SaveClicked += FileUC1_SaveClicked;
             fileUC1.SaveAsClicked += FileUC1_SaveAsClicked;
-            //fileUC1.NewClicked += FileUC1_NewClicked;
+            fileUC1.NewClicked += FileUC1_NewClicked;
             //always start with pencil
             CurrentBrush = BrushType.Pencil;
         }
@@ -60,36 +63,44 @@ namespace Paint
             
             OpenFileDialog f = new OpenFileDialog();
             f.Filter = @"Image Files(*.jpg; *.jpeg; *.bmp;*png)|*.jpg; *.jpeg; *.bmp; *.png";
-
-            if (f.ShowDialog() == DialogResult.OK)
+            try
             {
-                Bitmap bit = new Bitmap(f.FileName);
-                surface.Size = bit.Size;
-                surface.Image = bit;
-                Saved = true;
-                Changed = false;
-            } 
-           
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    Bitmap bit = new Bitmap(f.FileName);
+                    surface.Size = bit.Size;
+                    surface.Image = bit;
+                    Saved = true;
+                    Changed = false;
+                    surface.PushUndo(surface.Image);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+            }
+
         }
         string ImagedSave;
         private void FileUC1_SaveAsClicked(object sender, EventArgs e)
         {
             SaveFileDialog f = new SaveFileDialog();
             f.Filter = "Bmp (*.bmp)|*.bmp|Jpg (*.jpg)|*.jpg|Jpeg (*.jpeg)|*.jpeg|Png (*.png)|*.png";
-
-
-            if (f.ShowDialog() == DialogResult.OK)
-            {
-                ImagedSave = f.FileName;
-                int width = Convert.ToInt32(surface.Width);
-                int height = Convert.ToInt32(surface.Height);
-                Bitmap bmp = new Bitmap(width, height);
-                surface.DrawToBitmap(bmp, new Rectangle(0, 0, width, height));
-                bmp.Save(ImagedSave);
-                Saved = true;
-                Changed = false;
-            }
+            
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    ImagedSave = f.FileName;
+                    int width = Convert.ToInt32(surface.Width);
+                    int height = Convert.ToInt32(surface.Height);
+                    Bitmap bmp = new Bitmap(width, height);
+                    surface.DrawToBitmap(bmp, new Rectangle(0, 0, width, height));
+                    bmp.Save(ImagedSave);
+                    Saved = true;
+                    Changed = false;
+                }
+              
         }
+
         private void FileUC1_SaveClicked(object sender, EventArgs e)
         {
             if (!Saved)
@@ -109,9 +120,20 @@ namespace Paint
                 }
             }
         }
-      
-        
-
+        private void FileUC1_NewClicked(object sender,EventArgs e)
+        {
+            FormClosingEventArgs f = new FormClosingEventArgs(CloseReason.UserClosing, false);
+            //closeUseDialog(f);
+          
+            {
+                draw = new Bitmap(surface.Width, surface.Height);
+                g = Graphics.FromImage(draw);
+                g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+                g.Clear(Color.Transparent);
+                g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                surface.Image = draw;
+            }
+        }
         private void PenUC1_PurpleClicked(object sender, EventArgs e)
         {
             PenB.BackColor = PenUC.Instance.getPurple();
