@@ -1,6 +1,10 @@
 # Paint
 Final result:
 ![ảnh](https://user-images.githubusercontent.com/55200386/71433286-e9946d00-2710-11ea-8716-0390efe5397b.png)
+Danh sách nhóm
+- Đỗ Ngọc Cường 18520542
+- Đỗ ngọc Thành 18520358
+- Nguyễn Trần Hoàng Hiếu 18520054
 # Tech/Framwork use
 -Use winform
 -Use MetroForm to make UI
