@@ -16,8 +16,6 @@ namespace Paint
     public partial class Surface : PictureBox
     {
         #region Component
-        int Draghandle;
-
         Rectangle OldRect;
         Rectangle AreaRect;
 
@@ -26,6 +24,7 @@ namespace Paint
         Graphics gra;
         Pen pen;
         Color color;
+        Color Pickercolor;
         int Pensize;
 
         DrawStatus CurrentStatus;
@@ -35,13 +34,12 @@ namespace Paint
         Stack<Point> UndoLocation;
         Stack<Point> RedoLocation;
 
-
+        BrushType tempBrush;
         Point MouseDown;
         Shape shape;
         Rectangle resolution = Screen.PrimaryScreen.Bounds;
         List<Point> points = new List<Point>();
         #endregion
-
 
         #region Init Surface
         public Surface()
@@ -92,6 +90,11 @@ namespace Paint
                         points.Add(e.Location);
 
                     }
+                    else if (e.Button == MouseButtons.Right)
+                    {
+                        tempBrush = Test.CurrentBrush;
+                        Test.CurrentBrush = BrushType.Picker;
+                    }
                     SetGraphics();
 
                     Cursor = Cursors.Cross;
@@ -135,7 +138,7 @@ namespace Paint
                     Cursor = Cursors.Default;
 
                     if (path != null) path.ClearMarkers();
-                    if (Test.CurrentBrush == BrushType.Brush) ; //grp.DrawPath(pen, path);
+                    if (Test.CurrentBrush == BrushType.Picker) Test.CurrentBrush = tempBrush; //grp.DrawPath(pen, path);
                     
                     break;
                 case DrawStatus.ShapeDraw:
@@ -210,7 +213,7 @@ namespace Paint
                     CurrentStatus = DrawStatus.ToolDraw;
                     break;
                 case BrushType.Picker:
-                    // ongoing
+                    CurrentStatus = DrawStatus.ToolDraw;
                     break;
                 case BrushType.Shape:
                     pen = new Pen(Color.FromArgb(Test.ShapeOpacity, color),Test.ShapeSize);
@@ -220,6 +223,7 @@ namespace Paint
         }
 
         #endregion
+
         //bucket
         private void FloodFill(Point node, Color replaceColor)
         {
@@ -288,9 +292,11 @@ namespace Paint
                     path.AddLines(points.ToArray());
                     gra.DrawPath(pen, path);
                     //pen.LineJoin = LineJoin.Round;
-                    
-
-
+                    break; 
+                case BrushType.Picker:
+                    temp =  (Bitmap) Image;
+                    Pickercolor = temp.GetPixel(location.X, location.Y);
+                    BackColor = Pickercolor;
                     break;
                     //ongoing
             }
