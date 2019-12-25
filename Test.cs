@@ -439,12 +439,15 @@ namespace Paint
 
         private void Surface_MouseDown(object sender, MouseEventArgs e)
         {
-            Changed = true;
+            Changed = true; 
         }
 
         private void Surface_MouseMove(object sender, MouseEventArgs e)
         {
-
+            if (e.Button == MouseButtons.Right)
+            {
+                PickerB.BackColor = surface.Pickercolor;
+            }
         }
     
         private void EraserB_Click(object sender, EventArgs e)
@@ -587,6 +590,31 @@ namespace Paint
                 EraserB_Click_1(sender, e);
             if (e.Control && e.KeyCode == Keys.D3)
                 ShapesB_Click(sender, e);
+        }
+
+        private void PenB_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) 
+            {
+                PenB.BackColor = surface.Pickercolor;
+            }
+        }
+
+        private void drawPanel1_MouseMove(object sender, MouseEventArgs e)
+        {
+
+               // PenB.BackColor = surface.Pickercolor;
+            
+        }
+
+        private void PickerB_Click(object sender, EventArgs e)
+        {
+            color = PickerB.BackColor;
+            PenB.BackColor = color;
+            ShapesB.BackColor = color;
+
+            PenColor = color;
+            ShapesColor = color;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

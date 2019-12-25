@@ -24,7 +24,7 @@ namespace Paint
         Graphics gra;
         Pen pen;
         Color color;
-        Color Pickercolor;
+        public Color Pickercolor;
         int Pensize;
 
         DrawStatus CurrentStatus;
@@ -138,7 +138,11 @@ namespace Paint
                     Cursor = Cursors.Default;
 
                     if (path != null) path.ClearMarkers();
-                    if (Test.CurrentBrush == BrushType.Picker) Test.CurrentBrush = tempBrush; //grp.DrawPath(pen, path);
+                    if (Test.CurrentBrush == BrushType.Picker)
+                    {
+                        Test.CurrentBrush = tempBrush;
+                    }
+                    //grp.DrawPath(pen, path);
                     
                     break;
                 case DrawStatus.ShapeDraw:
@@ -296,7 +300,6 @@ namespace Paint
                 case BrushType.Picker:
                     temp =  (Bitmap) Image;
                     Pickercolor = temp.GetPixel(location.X, location.Y);
-                    BackColor = Pickercolor;
                     break;
                     //ongoing
             }
