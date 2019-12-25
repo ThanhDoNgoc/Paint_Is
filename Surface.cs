@@ -51,10 +51,10 @@ namespace Paint
             UndoLocation = new Stack<Point>();
             RedoLocation = new Stack<Point>();
 
-            Location = new Point(100, 100);
-            Size = new Size(100, 100);
+            Location = new Point(10, 10);
+            Size = new Size(1500, 500);
             Image = new Bitmap(Width, Height);
-            BackColor = Color.Yellow;
+            BackColor = Color.Azure;
 
             Region region = new Region(new Rectangle(0, 0, Width, Height));
             grp = Graphics.FromImage(Image);
@@ -201,7 +201,7 @@ namespace Paint
 
                     RedoLocation.Clear();
 
-                    pen = new Pen(Color.FromArgb(10, color), Test.PenSize);
+                    pen = new Pen(Color.FromArgb(Test.Opacity, color), Test.PenSize);
 
                     pen.StartCap = pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
                     
@@ -212,7 +212,7 @@ namespace Paint
                     // ongoing
                     break;
                 case BrushType.Shape:
-                    pen = new Pen(color, 10);
+                    pen = new Pen(Color.FromArgb(Test.ShapeOpacity, color),Test.ShapeSize);
                     CurrentStatus = DrawStatus.ShapeDraw;
                     break;
             }

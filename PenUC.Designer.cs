@@ -41,6 +41,8 @@
             this.ptbBlack = new System.Windows.Forms.PictureBox();
             this.ptbPurple = new System.Windows.Forms.PictureBox();
             this.ptbOrange = new System.Windows.Forms.PictureBox();
+            this.opacityTB = new MetroFramework.Controls.MetroTrackBar();
+            this.opacitylb = new LollipopLabel();
             ((System.ComponentModel.ISupportInitialize)(this.ptbRed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbWhite)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbBlue)).BeginInit();
@@ -187,10 +189,35 @@
             this.ptbOrange.TabStop = false;
             this.ptbOrange.Click += new System.EventHandler(this.ptbOrange_Click);
             // 
+            // opacityTB
+            // 
+            this.opacityTB.BackColor = System.Drawing.Color.Transparent;
+            this.opacityTB.Location = new System.Drawing.Point(0, 164);
+            this.opacityTB.Name = "opacityTB";
+            this.opacityTB.Size = new System.Drawing.Size(220, 23);
+            this.opacityTB.TabIndex = 20;
+            this.opacityTB.Text = "metroTrackBar2";
+            this.opacityTB.Value = 10;
+            this.opacityTB.Scroll += new System.Windows.Forms.ScrollEventHandler(this.opacityTB_Scroll);
+            // 
+            // opacitylb
+            // 
+            this.opacitylb.AutoSize = true;
+            this.opacitylb.BackColor = System.Drawing.Color.Transparent;
+            this.opacitylb.Font = new System.Drawing.Font("Roboto Medium", 10F);
+            this.opacitylb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.opacitylb.Location = new System.Drawing.Point(-1, 142);
+            this.opacitylb.Name = "opacitylb";
+            this.opacitylb.Size = new System.Drawing.Size(58, 19);
+            this.opacitylb.TabIndex = 21;
+            this.opacitylb.Text = "Opacity";
+            // 
             // PenUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.opacitylb);
+            this.Controls.Add(this.opacityTB);
             this.Controls.Add(this.ptbRed);
             this.Controls.Add(this.ptbWhite);
             this.Controls.Add(this.ptbBlue);
@@ -234,5 +261,7 @@
         private System.Windows.Forms.PictureBox ptbBlack;
         private System.Windows.Forms.PictureBox ptbPurple;
         private System.Windows.Forms.PictureBox ptbOrange;
+        private MetroFramework.Controls.MetroTrackBar opacityTB;
+        private LollipopLabel opacitylb;
     }
 }

@@ -261,5 +261,15 @@ namespace Paint
                 this.LeftArrowClicked(sender, e);
             }
         }
+
+        private void metroTrackBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            Test.ShapeSize = metroTrackBar1.Value;
+        }
+
+        private void opacityTB_Scroll(object sender, ScrollEventArgs e)
+        {
+            Test.ShapeOpacity = opacityTB.Value;
+        }
     }
 }

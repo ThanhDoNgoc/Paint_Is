@@ -24,6 +24,9 @@ namespace Paint
 
         public static int PenSize;
         public static int EraserSize;
+        public static int Opacity;
+        public static int ShapeSize;
+        public static int ShapeOpacity;
 
         public Test()
         {
@@ -78,13 +81,17 @@ namespace Paint
             CurrentBrush = BrushType.Pencil;
             CurrentShape = Shape.Star;
             shapeB = CurrentShape;
-            PenBrush = BrushType.Pencil ;
+            PenBrush = BrushType.Pencil;
             PenSize = 10;
             color = Color.Black;
+            PenColor = color;
             PenB.BackColor = Color.FromArgb(50, Color.Black);
             EraserSize = 10;
             ShapesB.BackColor = Color.FromArgb(50, Color.Black);
             ShapesColor = Color.Black;
+            Opacity = 10;
+            ShapeSize = 10;
+            ShapeOpacity = 255;
 
         }
 
@@ -432,6 +439,11 @@ namespace Paint
         }
 
         private void shapesUC1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

@@ -233,6 +233,16 @@ namespace Paint.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Logo_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("Logo-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pentagon {
             get {
                 object obj = ResourceManager.GetObject("pentagon", resourceCulture);

@@ -46,6 +46,10 @@
             this.ptbBlack = new System.Windows.Forms.PictureBox();
             this.ptbPurple = new System.Windows.Forms.PictureBox();
             this.ptbOrange = new System.Windows.Forms.PictureBox();
+            this.opacitylb = new LollipopLabel();
+            this.opacityTB = new MetroFramework.Controls.MetroTrackBar();
+            this.SizeLb = new LollipopLabel();
+            this.metroTrackBar1 = new MetroFramework.Controls.MetroTrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.ptbRed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbWhite)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbBlue)).BeginInit();
@@ -60,10 +64,9 @@
             // 
             this.TriangleB.BackgroundImage = global::Paint.Properties.Resources.triangle_2;
             this.TriangleB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.TriangleB.Location = new System.Drawing.Point(4, 85);
-            this.TriangleB.Margin = new System.Windows.Forms.Padding(4);
+            this.TriangleB.Location = new System.Drawing.Point(3, 69);
             this.TriangleB.Name = "TriangleB";
-            this.TriangleB.Size = new System.Drawing.Size(80, 74);
+            this.TriangleB.Size = new System.Drawing.Size(60, 60);
             this.TriangleB.TabIndex = 20;
             this.TriangleB.UseSelectable = true;
             this.TriangleB.Click += new System.EventHandler(this.TriangleB_Click);
@@ -72,10 +75,9 @@
             // 
             this.StarB.BackgroundImage = global::Paint.Properties.Resources.star;
             this.StarB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.StarB.Location = new System.Drawing.Point(209, 4);
-            this.StarB.Margin = new System.Windows.Forms.Padding(4);
+            this.StarB.Location = new System.Drawing.Point(157, 3);
             this.StarB.Name = "StarB";
-            this.StarB.Size = new System.Drawing.Size(80, 74);
+            this.StarB.Size = new System.Drawing.Size(60, 60);
             this.StarB.TabIndex = 19;
             this.StarB.UseSelectable = true;
             this.StarB.Click += new System.EventHandler(this.StarB_Click);
@@ -84,10 +86,9 @@
             // 
             this.ArrowRB.BackgroundImage = global::Paint.Properties.Resources.icons8_arrow_1001;
             this.ArrowRB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ArrowRB.Location = new System.Drawing.Point(107, 166);
-            this.ArrowRB.Margin = new System.Windows.Forms.Padding(4);
+            this.ArrowRB.Location = new System.Drawing.Point(80, 135);
             this.ArrowRB.Name = "ArrowRB";
-            this.ArrowRB.Size = new System.Drawing.Size(80, 74);
+            this.ArrowRB.Size = new System.Drawing.Size(60, 60);
             this.ArrowRB.TabIndex = 18;
             this.ArrowRB.UseSelectable = true;
             this.ArrowRB.Click += new System.EventHandler(this.ArrowRB_Click);
@@ -96,10 +97,9 @@
             // 
             this.CircleB.BackgroundImage = global::Paint.Properties.Resources.circle;
             this.CircleB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.CircleB.Location = new System.Drawing.Point(107, 4);
-            this.CircleB.Margin = new System.Windows.Forms.Padding(4);
+            this.CircleB.Location = new System.Drawing.Point(80, 3);
             this.CircleB.Name = "CircleB";
-            this.CircleB.Size = new System.Drawing.Size(80, 74);
+            this.CircleB.Size = new System.Drawing.Size(60, 60);
             this.CircleB.TabIndex = 17;
             this.CircleB.UseSelectable = true;
             this.CircleB.Click += new System.EventHandler(this.CircleB_Click);
@@ -108,10 +108,9 @@
             // 
             this.ArrowLB.BackgroundImage = global::Paint.Properties.Resources.icons8_arrow_100___Copy1;
             this.ArrowLB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ArrowLB.Location = new System.Drawing.Point(209, 166);
-            this.ArrowLB.Margin = new System.Windows.Forms.Padding(4);
+            this.ArrowLB.Location = new System.Drawing.Point(157, 135);
             this.ArrowLB.Name = "ArrowLB";
-            this.ArrowLB.Size = new System.Drawing.Size(80, 74);
+            this.ArrowLB.Size = new System.Drawing.Size(60, 60);
             this.ArrowLB.TabIndex = 16;
             this.ArrowLB.UseSelectable = true;
             this.ArrowLB.Click += new System.EventHandler(this.ArrowLB_Click);
@@ -120,10 +119,9 @@
             // 
             this.LineB.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LineB.BackgroundImage")));
             this.LineB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.LineB.Location = new System.Drawing.Point(4, 4);
-            this.LineB.Margin = new System.Windows.Forms.Padding(4);
+            this.LineB.Location = new System.Drawing.Point(3, 3);
             this.LineB.Name = "LineB";
-            this.LineB.Size = new System.Drawing.Size(80, 74);
+            this.LineB.Size = new System.Drawing.Size(60, 60);
             this.LineB.TabIndex = 15;
             this.LineB.UseSelectable = true;
             this.LineB.Click += new System.EventHandler(this.LineB_Click);
@@ -132,10 +130,9 @@
             // 
             this.PentagonB.BackgroundImage = global::Paint.Properties.Resources.pentagon;
             this.PentagonB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PentagonB.Location = new System.Drawing.Point(209, 85);
-            this.PentagonB.Margin = new System.Windows.Forms.Padding(4);
+            this.PentagonB.Location = new System.Drawing.Point(157, 69);
             this.PentagonB.Name = "PentagonB";
-            this.PentagonB.Size = new System.Drawing.Size(80, 74);
+            this.PentagonB.Size = new System.Drawing.Size(60, 60);
             this.PentagonB.TabIndex = 14;
             this.PentagonB.UseSelectable = true;
             this.PentagonB.Click += new System.EventHandler(this.PentagonB_Click);
@@ -144,10 +141,9 @@
             // 
             this.RectangleB.BackgroundImage = global::Paint.Properties.Resources.square;
             this.RectangleB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.RectangleB.Location = new System.Drawing.Point(107, 85);
-            this.RectangleB.Margin = new System.Windows.Forms.Padding(4);
+            this.RectangleB.Location = new System.Drawing.Point(80, 69);
             this.RectangleB.Name = "RectangleB";
-            this.RectangleB.Size = new System.Drawing.Size(80, 74);
+            this.RectangleB.Size = new System.Drawing.Size(60, 60);
             this.RectangleB.TabIndex = 13;
             this.RectangleB.UseSelectable = true;
             this.RectangleB.Click += new System.EventHandler(this.RectangleB_Click);
@@ -156,10 +152,9 @@
             // 
             this.HexagonB.BackgroundImage = global::Paint.Properties.Resources.hexagon;
             this.HexagonB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.HexagonB.Location = new System.Drawing.Point(4, 166);
-            this.HexagonB.Margin = new System.Windows.Forms.Padding(4);
+            this.HexagonB.Location = new System.Drawing.Point(3, 135);
             this.HexagonB.Name = "HexagonB";
-            this.HexagonB.Size = new System.Drawing.Size(80, 74);
+            this.HexagonB.Size = new System.Drawing.Size(60, 60);
             this.HexagonB.TabIndex = 12;
             this.HexagonB.UseSelectable = true;
             this.HexagonB.Click += new System.EventHandler(this.HexagonB_Click);
@@ -167,10 +162,9 @@
             // ptbRed
             // 
             this.ptbRed.BackColor = System.Drawing.Color.Red;
-            this.ptbRed.Location = new System.Drawing.Point(72, 494);
-            this.ptbRed.Margin = new System.Windows.Forms.Padding(4);
+            this.ptbRed.Location = new System.Drawing.Point(54, 401);
             this.ptbRed.Name = "ptbRed";
-            this.ptbRed.Size = new System.Drawing.Size(60, 55);
+            this.ptbRed.Size = new System.Drawing.Size(45, 45);
             this.ptbRed.TabIndex = 35;
             this.ptbRed.TabStop = false;
             this.ptbRed.Click += new System.EventHandler(this.ptbRed_Click);
@@ -178,10 +172,9 @@
             // ptbWhite
             // 
             this.ptbWhite.BackColor = System.Drawing.Color.White;
-            this.ptbWhite.Location = new System.Drawing.Point(4, 494);
-            this.ptbWhite.Margin = new System.Windows.Forms.Padding(4);
+            this.ptbWhite.Location = new System.Drawing.Point(3, 401);
             this.ptbWhite.Name = "ptbWhite";
-            this.ptbWhite.Size = new System.Drawing.Size(60, 55);
+            this.ptbWhite.Size = new System.Drawing.Size(45, 45);
             this.ptbWhite.TabIndex = 34;
             this.ptbWhite.TabStop = false;
             this.ptbWhite.Click += new System.EventHandler(this.ptbWhite_Click);
@@ -189,10 +182,9 @@
             // ptbBlue
             // 
             this.ptbBlue.BackColor = System.Drawing.Color.Blue;
-            this.ptbBlue.Location = new System.Drawing.Point(160, 556);
-            this.ptbBlue.Margin = new System.Windows.Forms.Padding(4);
+            this.ptbBlue.Location = new System.Drawing.Point(120, 452);
             this.ptbBlue.Name = "ptbBlue";
-            this.ptbBlue.Size = new System.Drawing.Size(60, 55);
+            this.ptbBlue.Size = new System.Drawing.Size(45, 45);
             this.ptbBlue.TabIndex = 33;
             this.ptbBlue.TabStop = false;
             this.ptbBlue.Click += new System.EventHandler(this.ptbBlue_Click);
@@ -200,10 +192,9 @@
             // ptbYellow
             // 
             this.ptbYellow.BackColor = System.Drawing.Color.Yellow;
-            this.ptbYellow.Location = new System.Drawing.Point(140, 494);
-            this.ptbYellow.Margin = new System.Windows.Forms.Padding(4);
+            this.ptbYellow.Location = new System.Drawing.Point(105, 401);
             this.ptbYellow.Name = "ptbYellow";
-            this.ptbYellow.Size = new System.Drawing.Size(60, 55);
+            this.ptbYellow.Size = new System.Drawing.Size(45, 45);
             this.ptbYellow.TabIndex = 32;
             this.ptbYellow.TabStop = false;
             this.ptbYellow.Click += new System.EventHandler(this.ptbYellow_Click);
@@ -211,10 +202,9 @@
             // ptbGreen
             // 
             this.ptbGreen.BackColor = System.Drawing.Color.Green;
-            this.ptbGreen.Location = new System.Drawing.Point(92, 556);
-            this.ptbGreen.Margin = new System.Windows.Forms.Padding(4);
+            this.ptbGreen.Location = new System.Drawing.Point(69, 452);
             this.ptbGreen.Name = "ptbGreen";
-            this.ptbGreen.Size = new System.Drawing.Size(60, 55);
+            this.ptbGreen.Size = new System.Drawing.Size(45, 45);
             this.ptbGreen.TabIndex = 31;
             this.ptbGreen.TabStop = false;
             this.ptbGreen.Click += new System.EventHandler(this.ptbGreen_Click);
@@ -222,10 +212,9 @@
             // ptbBlack
             // 
             this.ptbBlack.BackColor = System.Drawing.Color.Black;
-            this.ptbBlack.Location = new System.Drawing.Point(24, 556);
-            this.ptbBlack.Margin = new System.Windows.Forms.Padding(4);
+            this.ptbBlack.Location = new System.Drawing.Point(18, 452);
             this.ptbBlack.Name = "ptbBlack";
-            this.ptbBlack.Size = new System.Drawing.Size(60, 55);
+            this.ptbBlack.Size = new System.Drawing.Size(45, 45);
             this.ptbBlack.TabIndex = 30;
             this.ptbBlack.TabStop = false;
             this.ptbBlack.Click += new System.EventHandler(this.ptbBlack_Click);
@@ -233,10 +222,9 @@
             // ptbPurple
             // 
             this.ptbPurple.BackColor = System.Drawing.Color.Purple;
-            this.ptbPurple.Location = new System.Drawing.Point(227, 554);
-            this.ptbPurple.Margin = new System.Windows.Forms.Padding(4);
+            this.ptbPurple.Location = new System.Drawing.Point(171, 452);
             this.ptbPurple.Name = "ptbPurple";
-            this.ptbPurple.Size = new System.Drawing.Size(60, 55);
+            this.ptbPurple.Size = new System.Drawing.Size(45, 45);
             this.ptbPurple.TabIndex = 29;
             this.ptbPurple.TabStop = false;
             this.ptbPurple.Click += new System.EventHandler(this.ptbPurple_Click);
@@ -244,18 +232,68 @@
             // ptbOrange
             // 
             this.ptbOrange.BackColor = System.Drawing.Color.Orange;
-            this.ptbOrange.Location = new System.Drawing.Point(208, 494);
-            this.ptbOrange.Margin = new System.Windows.Forms.Padding(4);
+            this.ptbOrange.Location = new System.Drawing.Point(156, 401);
             this.ptbOrange.Name = "ptbOrange";
-            this.ptbOrange.Size = new System.Drawing.Size(60, 55);
+            this.ptbOrange.Size = new System.Drawing.Size(45, 45);
             this.ptbOrange.TabIndex = 28;
             this.ptbOrange.TabStop = false;
             this.ptbOrange.Click += new System.EventHandler(this.ptbOrange_Click);
             // 
+            // opacitylb
+            // 
+            this.opacitylb.AutoSize = true;
+            this.opacitylb.BackColor = System.Drawing.Color.Transparent;
+            this.opacitylb.Font = new System.Drawing.Font("Roboto Medium", 10F);
+            this.opacitylb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.opacitylb.Location = new System.Drawing.Point(0, 278);
+            this.opacitylb.Name = "opacitylb";
+            this.opacitylb.Size = new System.Drawing.Size(58, 19);
+            this.opacitylb.TabIndex = 39;
+            this.opacitylb.Text = "Opacity";
+            // 
+            // opacityTB
+            // 
+            this.opacityTB.BackColor = System.Drawing.Color.Transparent;
+            this.opacityTB.Location = new System.Drawing.Point(1, 300);
+            this.opacityTB.Maximum = 255;
+            this.opacityTB.Name = "opacityTB";
+            this.opacityTB.Size = new System.Drawing.Size(220, 23);
+            this.opacityTB.TabIndex = 38;
+            this.opacityTB.Text = "metroTrackBar2";
+            this.opacityTB.Value = 255;
+            this.opacityTB.Scroll += new System.Windows.Forms.ScrollEventHandler(this.opacityTB_Scroll);
+            // 
+            // SizeLb
+            // 
+            this.SizeLb.AutoSize = true;
+            this.SizeLb.BackColor = System.Drawing.Color.Transparent;
+            this.SizeLb.Font = new System.Drawing.Font("Roboto Medium", 10F);
+            this.SizeLb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.SizeLb.Location = new System.Drawing.Point(4, 214);
+            this.SizeLb.Name = "SizeLb";
+            this.SizeLb.Size = new System.Drawing.Size(36, 19);
+            this.SizeLb.TabIndex = 37;
+            this.SizeLb.Text = "Size";
+            // 
+            // metroTrackBar1
+            // 
+            this.metroTrackBar1.BackColor = System.Drawing.Color.Transparent;
+            this.metroTrackBar1.Location = new System.Drawing.Point(1, 236);
+            this.metroTrackBar1.Name = "metroTrackBar1";
+            this.metroTrackBar1.Size = new System.Drawing.Size(220, 23);
+            this.metroTrackBar1.TabIndex = 36;
+            this.metroTrackBar1.Text = "metroTrackBar1";
+            this.metroTrackBar1.Value = 10;
+            this.metroTrackBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.metroTrackBar1_Scroll);
+            // 
             // ShapesUC
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.opacitylb);
+            this.Controls.Add(this.opacityTB);
+            this.Controls.Add(this.SizeLb);
+            this.Controls.Add(this.metroTrackBar1);
             this.Controls.Add(this.ptbRed);
             this.Controls.Add(this.ptbWhite);
             this.Controls.Add(this.ptbBlue);
@@ -273,9 +311,8 @@
             this.Controls.Add(this.PentagonB);
             this.Controls.Add(this.RectangleB);
             this.Controls.Add(this.HexagonB);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ShapesUC";
-            this.Size = new System.Drawing.Size(298, 622);
+            this.Size = new System.Drawing.Size(220, 500);
             this.Load += new System.EventHandler(this.ShapesUC_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ptbRed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbWhite)).EndInit();
@@ -286,6 +323,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ptbPurple)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbOrange)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -308,5 +346,9 @@
         private System.Windows.Forms.PictureBox ptbBlack;
         private System.Windows.Forms.PictureBox ptbPurple;
         private System.Windows.Forms.PictureBox ptbOrange;
+        private LollipopLabel opacitylb;
+        private MetroFramework.Controls.MetroTrackBar opacityTB;
+        private LollipopLabel SizeLb;
+        private MetroFramework.Controls.MetroTrackBar metroTrackBar1;
     }
 }

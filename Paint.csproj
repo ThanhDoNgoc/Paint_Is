@@ -152,6 +152,7 @@
     <Content Include="Buttons\icons8-redo-96.png" />
     <Content Include="Buttons\icons8-undo-96.png" />
     <Content Include="Buttons\Logo-removebg-preview.ico" />
+    <Content Include="Buttons\Logo-removebg-preview.png" />
     <Content Include="Buttons\pentagon.png" />
     <Content Include="Buttons\save.png" />
     <Content Include="Buttons\square.png" />

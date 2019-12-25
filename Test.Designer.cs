@@ -40,10 +40,12 @@
             this.EraserB = new MetroFramework.Controls.MetroButton();
             this.Transition1 = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.ESize = new MetroFramework.Controls.MetroTrackBar();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.drawPanel1 = new Paint.DrawPanel();
             this.shapesUC1 = new Paint.ShapesUC();
             this.fileUC1 = new Paint.FileUC();
             this.penUC1 = new Paint.PenUC();
-            this.drawPanel1 = new Paint.DrawPanel();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // FileB
@@ -52,10 +54,9 @@
             this.FileB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Transition1.SetDecoration(this.FileB, BunifuAnimatorNS.DecorationType.None);
             this.FileB.ForeColor = System.Drawing.SystemColors.Control;
-            this.FileB.Location = new System.Drawing.Point(0, 9);
-            this.FileB.Margin = new System.Windows.Forms.Padding(4);
+            this.FileB.Location = new System.Drawing.Point(0, 7);
             this.FileB.Name = "FileB";
-            this.FileB.Size = new System.Drawing.Size(93, 62);
+            this.FileB.Size = new System.Drawing.Size(70, 50);
             this.FileB.TabIndex = 10;
             this.FileB.Text = "File";
             this.FileB.UseSelectable = true;
@@ -66,10 +67,9 @@
             this.PenB.BackgroundImage = global::Paint.Properties.Resources._050_pencil;
             this.PenB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Transition1.SetDecoration(this.PenB, BunifuAnimatorNS.DecorationType.None);
-            this.PenB.Location = new System.Drawing.Point(631, 9);
-            this.PenB.Margin = new System.Windows.Forms.Padding(4);
+            this.PenB.Location = new System.Drawing.Point(473, 7);
             this.PenB.Name = "PenB";
-            this.PenB.Size = new System.Drawing.Size(67, 62);
+            this.PenB.Size = new System.Drawing.Size(50, 50);
             this.PenB.TabIndex = 9;
             this.PenB.UseSelectable = true;
             this.PenB.Click += new System.EventHandler(this.PenB_Click);
@@ -79,10 +79,9 @@
             this.UndoB.BackgroundImage = global::Paint.Properties.Resources.icons8_undo_96;
             this.UndoB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Transition1.SetDecoration(this.UndoB, BunifuAnimatorNS.DecorationType.None);
-            this.UndoB.Location = new System.Drawing.Point(329, 9);
-            this.UndoB.Margin = new System.Windows.Forms.Padding(4);
+            this.UndoB.Location = new System.Drawing.Point(247, 7);
             this.UndoB.Name = "UndoB";
-            this.UndoB.Size = new System.Drawing.Size(67, 62);
+            this.UndoB.Size = new System.Drawing.Size(50, 50);
             this.UndoB.TabIndex = 8;
             this.UndoB.UseSelectable = true;
             this.UndoB.Click += new System.EventHandler(this.UndoB_Click);
@@ -92,10 +91,9 @@
             this.RedoB.BackgroundImage = global::Paint.Properties.Resources.icons8_redo_96;
             this.RedoB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Transition1.SetDecoration(this.RedoB, BunifuAnimatorNS.DecorationType.None);
-            this.RedoB.Location = new System.Drawing.Point(404, 9);
-            this.RedoB.Margin = new System.Windows.Forms.Padding(4);
+            this.RedoB.Location = new System.Drawing.Point(303, 7);
             this.RedoB.Name = "RedoB";
-            this.RedoB.Size = new System.Drawing.Size(67, 62);
+            this.RedoB.Size = new System.Drawing.Size(50, 50);
             this.RedoB.TabIndex = 7;
             this.RedoB.UseSelectable = true;
             this.RedoB.Click += new System.EventHandler(this.RedoB_Click);
@@ -105,10 +103,9 @@
             this.ShapesB.BackgroundImage = global::Paint.Properties.Resources.star;
             this.ShapesB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Transition1.SetDecoration(this.ShapesB, BunifuAnimatorNS.DecorationType.None);
-            this.ShapesB.Location = new System.Drawing.Point(780, 9);
-            this.ShapesB.Margin = new System.Windows.Forms.Padding(4);
+            this.ShapesB.Location = new System.Drawing.Point(585, 7);
             this.ShapesB.Name = "ShapesB";
-            this.ShapesB.Size = new System.Drawing.Size(67, 62);
+            this.ShapesB.Size = new System.Drawing.Size(50, 50);
             this.ShapesB.TabIndex = 6;
             this.ShapesB.UseSelectable = true;
             this.ShapesB.Click += new System.EventHandler(this.ShapesB_Click);
@@ -118,10 +115,9 @@
             this.SaveB.BackgroundImage = global::Paint.Properties.Resources.save;
             this.SaveB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Transition1.SetDecoration(this.SaveB, BunifuAnimatorNS.DecorationType.None);
-            this.SaveB.Location = new System.Drawing.Point(113, 9);
-            this.SaveB.Margin = new System.Windows.Forms.Padding(4);
+            this.SaveB.Location = new System.Drawing.Point(85, 7);
             this.SaveB.Name = "SaveB";
-            this.SaveB.Size = new System.Drawing.Size(67, 62);
+            this.SaveB.Size = new System.Drawing.Size(50, 50);
             this.SaveB.TabIndex = 5;
             this.SaveB.UseSelectable = true;
             // 
@@ -130,10 +126,9 @@
             this.EraserB.BackgroundImage = global::Paint.Properties.Resources._027_eraser;
             this.EraserB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Transition1.SetDecoration(this.EraserB, BunifuAnimatorNS.DecorationType.None);
-            this.EraserB.Location = new System.Drawing.Point(705, 9);
-            this.EraserB.Margin = new System.Windows.Forms.Padding(4);
+            this.EraserB.Location = new System.Drawing.Point(529, 7);
             this.EraserB.Name = "EraserB";
-            this.EraserB.Size = new System.Drawing.Size(67, 62);
+            this.EraserB.Size = new System.Drawing.Size(50, 50);
             this.EraserB.TabIndex = 3;
             this.EraserB.UseSelectable = true;
             this.EraserB.Click += new System.EventHandler(this.EraserB_Click_1);
@@ -163,59 +158,78 @@
             // 
             this.ESize.BackColor = System.Drawing.Color.Transparent;
             this.Transition1.SetDecoration(this.ESize, BunifuAnimatorNS.DecorationType.None);
-            this.ESize.Location = new System.Drawing.Point(0, 146);
+            this.ESize.Location = new System.Drawing.Point(-1, 241);
+            this.ESize.Margin = new System.Windows.Forms.Padding(2);
             this.ESize.Name = "ESize";
-            this.ESize.Size = new System.Drawing.Size(220, 23);
+            this.ESize.Size = new System.Drawing.Size(220, 19);
             this.ESize.TabIndex = 12;
             this.ESize.Value = 10;
             this.ESize.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ESize_Scroll);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::Paint.Properties.Resources.Logo_removebg_preview;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Transition1.SetDecoration(this.pictureBox1, BunifuAnimatorNS.DecorationType.None);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 106);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(219, 180);
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // drawPanel1
+            // 
+            this.drawPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Transition1.SetDecoration(this.drawPanel1, BunifuAnimatorNS.DecorationType.None);
+            this.drawPanel1.Location = new System.Drawing.Point(226, 63);
+            this.drawPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.drawPanel1.Name = "drawPanel1";
+            this.drawPanel1.Size = new System.Drawing.Size(980, 500);
+            this.drawPanel1.TabIndex = 0;
+            this.drawPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.drawPanel1_Paint);
+            // 
             // shapesUC1
             // 
+            this.shapesUC1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.Transition1.SetDecoration(this.shapesUC1, BunifuAnimatorNS.DecorationType.None);
-            this.shapesUC1.Location = new System.Drawing.Point(0, 78);
-            this.shapesUC1.Margin = new System.Windows.Forms.Padding(4);
+            this.shapesUC1.Location = new System.Drawing.Point(1, 63);
             this.shapesUC1.Name = "shapesUC1";
-            this.shapesUC1.Size = new System.Drawing.Size(293, 668);
+            this.shapesUC1.Size = new System.Drawing.Size(220, 543);
             this.shapesUC1.TabIndex = 11;
             this.shapesUC1.Load += new System.EventHandler(this.shapesUC1_Load);
             // 
             // fileUC1
             // 
+            this.fileUC1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.Transition1.SetDecoration(this.fileUC1, BunifuAnimatorNS.DecorationType.None);
-            this.fileUC1.Location = new System.Drawing.Point(0, 81);
-            this.fileUC1.Margin = new System.Windows.Forms.Padding(5);
+            this.fileUC1.Location = new System.Drawing.Point(0, 66);
+            this.fileUC1.Margin = new System.Windows.Forms.Padding(4);
             this.fileUC1.Name = "fileUC1";
-            this.fileUC1.Size = new System.Drawing.Size(293, 615);
+            this.fileUC1.Size = new System.Drawing.Size(220, 500);
             this.fileUC1.TabIndex = 1;
             // 
             // penUC1
             // 
+            this.penUC1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.Transition1.SetDecoration(this.penUC1, BunifuAnimatorNS.DecorationType.None);
-            this.penUC1.Location = new System.Drawing.Point(0, 78);
-            this.penUC1.Margin = new System.Windows.Forms.Padding(5);
+            this.penUC1.Location = new System.Drawing.Point(0, 63);
+            this.penUC1.Margin = new System.Windows.Forms.Padding(4);
             this.penUC1.Name = "penUC1";
-            this.penUC1.Size = new System.Drawing.Size(293, 615);
+            this.penUC1.Size = new System.Drawing.Size(220, 500);
             this.penUC1.TabIndex = 2;
-            // 
-            // drawPanel1
-            // 
-            this.Transition1.SetDecoration(this.drawPanel1, BunifuAnimatorNS.DecorationType.None);
-            this.drawPanel1.Location = new System.Drawing.Point(301, 77);
-            this.drawPanel1.Name = "drawPanel1";
-            this.drawPanel1.Size = new System.Drawing.Size(1306, 615);
-            this.drawPanel1.TabIndex = 0;
-            this.drawPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.drawPanel1_Paint);
             // 
             // Test
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1290, 589);
-            this.Controls.Add(this.shapesUC1);
+            this.ClientSize = new System.Drawing.Size(1225, 574);
             this.Controls.Add(this.ESize);
-            this.Controls.Add(this.fileUC1);
-            this.Controls.Add(this.penUC1);
             this.Controls.Add(this.FileB);
             this.Controls.Add(this.PenB);
             this.Controls.Add(this.UndoB);
@@ -224,12 +238,16 @@
             this.Controls.Add(this.SaveB);
             this.Controls.Add(this.EraserB);
             this.Controls.Add(this.drawPanel1);
+            this.Controls.Add(this.shapesUC1);
+            this.Controls.Add(this.fileUC1);
+            this.Controls.Add(this.penUC1);
+            this.Controls.Add(this.pictureBox1);
             this.Transition1.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Test";
-            this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Test_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -249,5 +267,6 @@
         private PenUC penUC1;
         private ShapesUC shapesUC1;
         private MetroFramework.Controls.MetroTrackBar ESize;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

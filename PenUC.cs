@@ -177,6 +177,11 @@ namespace Paint
         {
             Test.PenSize = metroTrackBar1.Value;
         }
+
+        private void opacityTB_Scroll(object sender, ScrollEventArgs e)
+        {
+            Test.Opacity = opacityTB.Value;
+        }
     }
 }
 
