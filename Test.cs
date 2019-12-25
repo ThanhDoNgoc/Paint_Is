@@ -28,6 +28,10 @@ namespace Paint
         public static int ShapeSize;
         public static int ShapeOpacity;
 
+        bool Saved, Changed;
+        Bitmap draw;
+        Graphics g;
+
         public Test()
         {
             InitializeComponent();
@@ -35,6 +39,7 @@ namespace Paint
             fileUC1.Visible = false;
             shapesUC1.Visible = false;
             ESize.Visible = false;
+            Saved = Changed = false;
             surface = drawPanel1.Surface;
             surface.MouseDown += Surface_MouseDown;
             surface.MouseMove += Surface_MouseMove;
@@ -74,10 +79,14 @@ namespace Paint
             penUC1.BlueClicked += PenUC1_BlueClicked;
             penUC1.GreenClicked += PenUC1_GreenClicked;
             penUC1.PurpleClicked += PenUC1_PurpleClicked;
-            //Open file
+            //Open,Save,New file
             fileUC1.OpenClicked += FileUC1_OpenClicked;
 
-            //always start with...
+            fileUC1.SaveClicked += FileUC1_SaveClicked;
+            fileUC1.SaveAsClicked += FileUC1_SaveAsClicked;
+            fileUC1.NewClicked += FileUC1_NewClicked;
+
+            //always start with pencil
             CurrentBrush = BrushType.Pencil;
             CurrentShape = Shape.Star;
             shapeB = CurrentShape;
@@ -227,9 +236,81 @@ namespace Paint
 
         private void FileUC1_OpenClicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
+            
+            OpenFileDialog f = new OpenFileDialog();
+            f.Filter = @"Image Files(*.jpg; *.jpeg; *.bmp;*png)|*.jpg; *.jpeg; *.bmp; *.png";
+            try
+            {
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    Bitmap bit = new Bitmap(f.FileName);
+                    surface.Size = bit.Size;
+                    surface.Image = bit;
+                    Saved = true;
+                    Changed = false;
+                    surface.PushUndo(surface.Image);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+            }
+
+        }
+        string ImagedSave;
+        private void FileUC1_SaveAsClicked(object sender, EventArgs e)
+        {
+            SaveFileDialog f = new SaveFileDialog();
+            f.Filter = "Bmp (*.bmp)|*.bmp|Jpg (*.jpg)|*.jpg|Jpeg (*.jpeg)|*.jpeg|Png (*.png)|*.png";
+            
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    ImagedSave = f.FileName;
+                    int width = Convert.ToInt32(surface.Width);
+                    int height = Convert.ToInt32(surface.Height);
+                    Bitmap bmp = new Bitmap(width, height);
+                    surface.DrawToBitmap(bmp, new Rectangle(0, 0, width, height));
+                    bmp.Save(ImagedSave);
+                    Saved = true;
+                    Changed = false;
+                }
+             
         }
 
+        private void FileUC1_SaveClicked(object sender, EventArgs e)
+        {
+            if (!Saved)
+            {
+                FileUC1_SaveAsClicked(sender, e);
+            }
+            else
+            {
+                if (ImagedSave != "")
+                {
+                    SaveFileDialog f = new SaveFileDialog();
+                    int width = Convert.ToInt32(surface.Width);
+                    int height = Convert.ToInt32(surface.Height);
+                    Bitmap bmp = new Bitmap(width, height);
+                    surface.DrawToBitmap(bmp, new Rectangle(0, 0, width, height));
+                    bmp.Save(ImagedSave);
+                }
+            }
+        }
+        private void FileUC1_NewClicked(object sender,EventArgs e)
+        {
+            FormClosingEventArgs f = new FormClosingEventArgs(CloseReason.UserClosing, false);
+            //closeUseDialog(f);
+          
+            {
+                draw = new Bitmap(surface.Width, surface.Height);
+                g = Graphics.FromImage(draw);
+                g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+                g.Clear(Color.Transparent);
+                g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                surface.Image = draw;
+            }
+        }
         private void PenUC1_PurpleClicked(object sender, EventArgs e)
         {
             PenB.BackColor = Color.FromArgb(50, PenUC.Instance.getPurple());
@@ -399,6 +480,11 @@ namespace Paint
         private void UndoB_Click(object sender, EventArgs e)
         {
             surface.UndoPress();
+        }
+
+        private void SaveB_Click(object sender, EventArgs e)
+        {
+            FileUC1_SaveClicked(sender, e);
         }
 
         private void RedoB_Click(object sender, EventArgs e)

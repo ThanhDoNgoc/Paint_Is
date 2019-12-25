@@ -115,3 +115,21 @@ C:\Users\ACER\Desktop\Paint-Is repo\Paint_Is\obj\Debug\Paint.csproj.GenerateReso
 C:\Users\ACER\Desktop\Paint-Is repo\Paint_Is\obj\Debug\Paint.csproj.CopyComplete
 C:\Users\ACER\Desktop\Paint-Is repo\Paint_Is\obj\Debug\Paint.exe
 C:\Users\ACER\Desktop\Paint-Is repo\Paint_Is\obj\Debug\Paint.pdb
+F:\Paint_Is\bin\Debug\Paint.exe.config
+F:\Paint_Is\bin\Debug\Paint.exe
+F:\Paint_Is\bin\Debug\Paint.pdb
+F:\Paint_Is\bin\Debug\MetroFramework.Design.dll
+F:\Paint_Is\bin\Debug\MetroFramework.dll
+F:\Paint_Is\bin\Debug\MetroFramework.Fonts.dll
+F:\Paint_Is\bin\Debug\Bunifu_UI_v1.5.3.xml
+F:\Paint_Is\bin\Debug\LollipopUI.pdb
+F:\Paint_Is\obj\Debug\Paint.csprojAssemblyReference.cache
+F:\Paint_Is\obj\Debug\Paint.FileUC.resources
+F:\Paint_Is\obj\Debug\Paint.PenUC.resources
+F:\Paint_Is\obj\Debug\Paint.Properties.Resources.resources
+F:\Paint_Is\obj\Debug\Paint.ShapesUC.resources
+F:\Paint_Is\obj\Debug\Paint.Test.resources
+F:\Paint_Is\obj\Debug\Paint.csproj.GenerateResource.cache
+F:\Paint_Is\obj\Debug\Paint.csproj.CopyComplete
+F:\Paint_Is\obj\Debug\Paint.exe
+F:\Paint_Is\obj\Debug\Paint.pdb
