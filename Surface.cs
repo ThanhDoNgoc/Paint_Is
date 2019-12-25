@@ -38,8 +38,9 @@ namespace Paint
 
         Point MouseDown;
         Shape shape;
-        #endregion
+        Rectangle resolution = Screen.PrimaryScreen.Bounds;
         List<Point> points = new List<Point>();
+        #endregion
 
 
         #region Init Surface
@@ -52,7 +53,7 @@ namespace Paint
             RedoLocation = new Stack<Point>();
 
             Location = new Point(10, 10);
-            Size = new Size(1500, 500);
+            Size = new Size(resolution.Width*3/4, resolution.Height*3/4 );
             Image = new Bitmap(Width, Height);
             BackColor = Color.Azure;
 
