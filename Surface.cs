@@ -198,7 +198,9 @@ namespace Paint
                     UndoLocation.Push(Location);
                     Redo.Clear();
                     RedoLocation.Clear();
-                    FloodFill(MouseDown, color);
+
+                    FloodFill(MouseDown, Color.FromArgb(Test.Opacity, color));
+
                     Redo.Push(new Bitmap(Image));
                     RedoLocation.Push(Location);
                     break;
@@ -272,13 +274,12 @@ namespace Paint
             {
 
                 case BrushType.Pencil:
-                    //grp = CreateGraphics();
+
                     grp = Graphics.FromImage(Image);
                     grp.DrawLine(pen, mouseDown, location);
                     // grp.SmoothingMode = 
                     break;
                 case BrushType.Eraser:
-                    //grp = CreateGraphics();
                     grp = Graphics.FromImage(Image);
                     grp.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
                     grp.DrawLine(pen, mouseDown, location);
