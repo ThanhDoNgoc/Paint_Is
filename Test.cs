@@ -549,7 +549,7 @@ namespace Paint
         {
             if (!Saved || Changed)
             {
-                DialogResult dr = MetroFramework.MetroMessageBox.Show(this, "File chưa được lưu, bạn có muốn lưu ứng dụng ?", "Save", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                DialogResult dr = MetroFramework.MetroMessageBox.Show(this, "You haven't save your gorgeous Painting yet, save it for later enhancement?", "Save", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                 if (dr == DialogResult.Yes)
                 {
                     FileUC1_SaveClicked(sender, e);

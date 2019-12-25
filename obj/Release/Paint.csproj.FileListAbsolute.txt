@@ -1,0 +1,7 @@
+C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\obj\Release\Paint.csprojAssemblyReference.cache
+C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\obj\Release\Paint.FileUC.resources
+C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\obj\Release\Paint.PenUC.resources
+C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\obj\Release\Paint.Properties.Resources.resources
+C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\obj\Release\Paint.ShapesUC.resources
+C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\obj\Release\Paint.Test.resources
+C:\Users\User\Desktop\Everything\codes\my repo\Paint_Is\obj\Release\Paint.csproj.GenerateResource.cache
