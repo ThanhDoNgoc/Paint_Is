@@ -584,11 +584,15 @@ namespace Paint
                 UndoB_Click(sender, e);
             if (e.Control && e.KeyCode == Keys.Y)
                 RedoB_Click(sender, e);
+            if (e.Control && e.KeyCode == Keys.N)
+                FileUC1_NewClicked(sender, e);
             if (e.Control && e.KeyCode == Keys.D1)
-                PenB_Click(sender, e);
+                PickerB_Click(sender, e);
             if (e.Control && e.KeyCode == Keys.D2)
-                EraserB_Click_1(sender, e);
+                PenB_Click(sender, e);
             if (e.Control && e.KeyCode == Keys.D3)
+                EraserB_Click_1(sender, e);
+            if (e.Control && e.KeyCode == Keys.D4)
                 ShapesB_Click(sender, e);
         }
 
