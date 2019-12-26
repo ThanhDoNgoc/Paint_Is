@@ -296,7 +296,7 @@ namespace Paint
 
                     path.AddLines(points.ToArray());
                     gra.DrawPath(pen, path);
-                    //pen.LineJoin = LineJoin.Round;
+                    pen.LineJoin = LineJoin.Round;
                     break; 
                 case BrushType.Picker:
                     temp =  (Bitmap) Image;
