@@ -17,3 +17,7 @@ Danh sách nhóm
 ![ảnh](https://user-images.githubusercontent.com/55200386/71433338-41cb6f00-2711-11ea-97e5-521237bfd565.png)
 # Video
 https://youtu.be/lafLokeo0pQ
+# Future plan
+- Remake the redo& undo feature (little buggy)
+- adding more features like spray, colormix panel, ...
+- adding a crop and editing features.
